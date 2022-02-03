@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,16 @@ Route::get('/', [AuthenticatedSessionController::class, 'create'])
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('/books', BookController::class);
+
+Route::get('/clients', function () {
+    return view('clients.index');
+})->name('clients');
+
+Route::get('/loans', function () {
+    return view('loans.index');
+})->name('loans');
 
 Route::resource('/states', StateController::class);
 

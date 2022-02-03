@@ -14,7 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+        return view('books.index', ['books' => $books]);
     }
 
     /**
@@ -24,7 +25,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.create');
     }
 
     /**
@@ -35,8 +36,10 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        Book::create($request->all());
+        session()->flash('message', 'Livro adicionado com sucesso');
+        return redirect()->route('books.index');
+}
 
     /**
      * Display the specified resource.
@@ -46,7 +49,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return view('books.show', ['book' => $book]);
     }
 
     /**
