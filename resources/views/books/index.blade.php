@@ -57,7 +57,7 @@
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                       @foreach($books as $b)
-                      <tr class="group cursor-pointer hover:bg-gray-200">
+                      <tr>
                         <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
                           {{ $b->id }}
                         </td>
@@ -106,6 +106,9 @@
                       @endforeach
                     </tbody>
                   </table>
+                </div>
+                <div class="mt-4">
+                {{ $books->links() }}
                 </div>
               </div>
             </div>
