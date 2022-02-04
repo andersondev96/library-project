@@ -1,8 +1,62 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Livros') }}
+      {{ $book->title }}
     </h2>
   </x-slot>
-  <h1>{{ $book->title }}</h1>
+
+
+  <div class="py-12">
+      <x-back/>
+
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="p-6 bg-white border-b border-gray-200">
+          <table class="table-auto">
+            <thead>
+              <tr>
+                <th class="px-4 py-2"></th>
+                <th class="px-4 py-2"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="border px-4 py-2">ID</td>
+                <td class="border px-4 py-2">{{ $book->id }}</td>
+              </tr>
+              <tr>
+                <td class="border px-4 py-2">ISBN</td>
+                <td class="border px-4 py-2">{{ $book->isbn }}</td>
+              </tr>
+              <tr>
+                <td class="border px-4 py-2">Autor(a)</td>
+                <td class="border px-4 py-2">{{ $book->author }}</td>
+              </tr>
+              <tr>
+                <td class="border px-4 py-2">Editora</td>
+                <td class="border px-4 py-2">{{ $book->publishing_company }}</td>
+              </tr>
+              <tr>
+                <td class="border px-4 py-2">Local de lançamento</td>
+                <td class="border px-4 py-2">{{ $book->publication_place }}</td>
+              </tr>
+              <tr>
+                <td class="border px-4 py-2">Data de lançamento</td>
+                <td class="border px-4 py-2">{{ \Carbon\Carbon::parse($book->publication_date)->format('d/m/Y') }}</td>
+              </tr>
+              <tr>
+                <td class="border px-4 py-2">Quantidade de exemplares</td>
+                <td class="border px-4 py-2">{{ $book->available_quantity }}</td>
+              </tr>
+              <tr>
+                <td class="border px-4 py-2">Quantidades disponíveis</td>
+                <td class="border px-4 py-2">{{ $book->available_quantity - $book->borrowed_amounts }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </x-app-layout>

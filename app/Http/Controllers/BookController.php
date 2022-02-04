@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
@@ -13,9 +14,16 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::paginate(10);
+        $books = Book::orderBy('id');
+
+        if ($request->title) {
+            $books->where('title', 'like', "%$request->title%");
+        }
+
+        $books = $books->simplePaginate(10);
+
         return view('books.index', ['books' => $books]);
     }
 
@@ -48,7 +56,7 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(BookRequest $book)
+    public function show(Book $book)
     {
         return view('books.show', ['book' => $book]);
     }
