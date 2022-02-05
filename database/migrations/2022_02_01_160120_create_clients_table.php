@@ -25,7 +25,7 @@ class CreateClientsTable extends Migration
             $table->string('type', 20);
             $table->string('department', 100);
             $table->integer('books')->default(0);
-            $table->decimal('traffic_ticket', $precision = 8, $scale = 2);
+            $table->decimal('traffic_ticket', $precision = 8, $scale = 2)->default(0.0);
             $table->foreign('address_id')
                 ->references('id')
                 ->on('addresses')

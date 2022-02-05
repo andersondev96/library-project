@@ -18,13 +18,13 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.index')">
+                    <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.index') || (\Request::is('books/*'))">
                         {{ __('Livros') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('clients')" :active="request()->routeIs('clients')">
+                    <x-nav-link :href="route('clients.index')" :active="request()->routeIs('clients.index') || (\Request::is('clients/*'))">
                         {{ __('Clientes') }}
                     </x-nav-link>
                 </div>

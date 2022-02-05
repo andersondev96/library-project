@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +25,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('/books', BookController::class);
+Route::resource('/books', BookController::class)->middleware(['auth']);
 
-Route::get('/clients', function () {
-    return view('clients.index');
-})->name('clients');
+Route::resource('/clients',ClientController::class)->middleware(['auth']);
 
 Route::get('/loans', function () {
     return view('loans.index');

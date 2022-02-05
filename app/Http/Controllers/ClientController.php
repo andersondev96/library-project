@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\State;
+use App\Models\Address;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -12,9 +14,17 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $clients = Client::orderBy('id');
+
+        if ($request->name) {
+            $clients->where('name', 'like', "%$request->name%");
+        }
+
+        $clients = $clients->simplePaginate(10);
+
+        return view('clients.index', ['clients' => $clients]);
     }
 
     /**
@@ -24,7 +34,10 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        $states = State::orderBy('initials')->get();
+        return view('clients.create', ['states' => $states]);
+
+
     }
 
     /**
@@ -35,7 +48,16 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $address = Address::create($request->all());
+            $client = new Client($request->all());
+            $client->address_id = $address->id;
+            $client->save();
+            session()->flash('message', 'Cliente adicionado com sucesso');
+            return redirect()->route('clients.index');
+        } catch (Expection $e) {
+            echo($e);
+        }
     }
 
     /**

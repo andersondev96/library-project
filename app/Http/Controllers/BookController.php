@@ -69,7 +69,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('books.edit', ['book' => $book]);
     }
 
     /**
@@ -81,7 +81,10 @@ class BookController extends Controller
      */
     public function update(BookRequest $request, Book $book)
     {
-        //
+        $book->fill($request->all());
+        $book->save();
+        session()->flash('message', 'Livro atualizado com sucesso');
+        return redirect()->route('books.index');
     }
 
     /**
@@ -90,8 +93,10 @@ class BookController extends Controller
      * @param  \App\Models\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BookRequest $book)
+    public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        session()->flash('message', 'Livro excluido com sucesso');
+        return redirect()->route('books.index');
     }
 }
