@@ -6,6 +6,8 @@ use App\Models\Client;
 use App\Models\State;
 use App\Models\Address;
 use Illuminate\Http\Request;
+use App\Http\Requests\AddressRequest;
+use App\Http\Requests\ClientRequest;
 
 class ClientController extends Controller
 {
@@ -46,17 +48,18 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( AddressRequest $addressRequest, ClientRequest $clientRequest)
     {
         try {
-            $address = Address::create($request->all());
-            $client = new Client($request->all());
+            $address = Address::create($addressRequest->all());
+            $client = new Client($clientRequest->all());
             $client->address_id = $address->id;
             $client->save();
-            session()->flash('message', 'Cliente adicionado com sucesso');
             return redirect()->route('clients.index');
-        } catch (Expection $e) {
-            echo($e);
+            session()->flash('message', 'Cliente adicionado com sucesso');
+        } catch (\Exception $e) {
+            session()->flash('error', 'Erro ao inserir cliente. Tente novamente: {{$e->message}}.');
+            return redirect()->route('clients.create');
         }
     }
 
