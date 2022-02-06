@@ -58,8 +58,7 @@ class ClientController extends Controller
             return redirect()->route('clients.index');
             session()->flash('message', 'Cliente adicionado com sucesso');
         } catch (\Exception $e) {
-            session()->flash('error', 'Erro ao inserir cliente. Tente novamente: {{$e->message}}.');
-            return redirect()->route('clients.create');
+            echo($e);
         }
     }
 
@@ -71,7 +70,7 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
-        //
+        return view('clients.show', ['client' => $client]);
     }
 
     /**
@@ -82,7 +81,8 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        $states = State::orderBy('initials')->get();
+        return view('clients.edit', ['client' => $client, 'states' => $states]);
     }
 
     /**
@@ -94,7 +94,15 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $address = Address::find($client->address_id);
+        $address->fill($request->all());
+        $address->save();
+
+        $client->fill($request->all());
+        $client->save();
+
+        session()->flash('message', 'Cliente atualizado com sucesso');
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -105,6 +113,12 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        //
+        $id = $client->address_id;
+        $address = Address::find($id);
+        $address->delete();
+
+        return redirect()->route('clients.index');
+        session()->flash('message', 'Cliente excluído com sucesso');
+
     }
 }
