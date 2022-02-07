@@ -17,10 +17,17 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $loans = Loan::orderBy('loan_date');
+
+        if ($request->name) {
+            $loans->where('name', 'like', "%$request->name%")
+                ->join('clients', 'clients.id', '=', 'client_id');
+        }
+
         $loans= $loans->simplePaginate(10);
+
         $clients = Client::orderBy('id')->get();
         $books = Book::orderBy('id')->get();
 
@@ -73,7 +80,7 @@ class LoanController extends Controller
      */
     public function show(Loan $loan)
     {
-        //
+        return view('loans.show', ['loan' => $loan]);
     }
 
     /**
@@ -84,7 +91,7 @@ class LoanController extends Controller
      */
     public function edit(Loan $loan)
     {
-        //
+        return view('loans.edit', ['loan' => $loan]);
     }
 
     /**
@@ -96,7 +103,12 @@ class LoanController extends Controller
      */
     public function update(Request $request, Loan $loan)
     {
-        //
+        //$loanId = Loan::find($loan->id);
+
+        $loan->fill($request->all());
+        $loan->save();
+        session()->flash('message', 'Empréstimo atualizado com sucesso');
+        return redirect()->route('loans.index');
     }
 
     /**
@@ -107,6 +119,8 @@ class LoanController extends Controller
      */
     public function destroy(Loan $loan)
     {
-        //
+        $loan->delete();
+        session()->flash('message', 'Empréstimo excluído com sucesso');
+        return redirect()->route('loans.index');
     }
 }

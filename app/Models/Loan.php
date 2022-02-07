@@ -9,9 +9,10 @@ class Loan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['books_id', 'loan_date', 'delivery_date', 'client_id', 'attendent_id'];
+    protected $fillable = ['books_id', 'loan_date', 'delivery_date', 'return_date', 'traffic_ticket', 'paid', 'client_id',  'attendent_id'];
+
     public function books() {
-        return $this->hasManyThrough(Book::class);
+        return $this->belongsTo(Book::class);
     }
 
     public function client() {

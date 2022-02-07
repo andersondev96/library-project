@@ -16,6 +16,6 @@ class Client extends Model
     }
 
     public function loans() {
-        return $this->hasManyThrough(Loan::class);
+        return $this->hasMany(Loan::class);
     }
 }
