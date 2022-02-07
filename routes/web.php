@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\LoanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,7 @@ Route::resource('/books', BookController::class)->middleware(['auth']);
 
 Route::resource('/clients',ClientController::class)->middleware(['auth']);
 
-Route::get('/loans', function () {
-    return view('loans.index');
-})->name('loans');
+Route::resource('/loans', LoanController::class)->middleware(['auth']);
 
 Route::resource('/states', StateController::class);
 

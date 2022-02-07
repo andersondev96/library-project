@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Loan;
 use Illuminate\Http\Request;
+use App\Models\Client;
+use App\Models\Book;
+use App\Models\User;
 
 class LoanController extends Controller
 {
@@ -14,7 +19,12 @@ class LoanController extends Controller
      */
     public function index()
     {
-        //
+        $loans = Loan::orderBy('loan_date');
+        $loans= $loans->simplePaginate(10);
+        $clients = Client::orderBy('id')->get();
+        $books = Book::orderBy('id')->get();
+
+        return view('loans.index', ['loans' => $loans, 'clients' => $clients, 'books' => $books]);
     }
 
     /**
@@ -24,7 +34,10 @@ class LoanController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::orderBy('id')->get();
+        $books = Book::orderBy('id')->get();
+
+        return view('loans.create', ['clients' => $clients, 'books' => $books]);
     }
 
     /**
@@ -33,9 +46,23 @@ class LoanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        //
+         try {
+            $loan = Loan::create([
+                'client_id' => $request->client_id,
+                'books_id' => $request->books_id,
+                'loan_date' => date('Y-m-d'),
+                'delivery_date' => $request->delivery_date,
+                'attendent_id' => Auth::user()->id,
+            ]);
+
+            $loan->save();
+            return redirect()->route('loans.index');
+            session()->flash('message', 'Empréstimo realizado com sucesso!');
+         } catch (\Exception $e) {
+            session()->flash('error', 'Erro ao realizar o empréstimo!');
+         }
     }
 
     /**
