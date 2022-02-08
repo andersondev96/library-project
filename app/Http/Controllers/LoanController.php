@@ -56,49 +56,30 @@ class LoanController extends Controller
     public function store(Request $request, User $user)
     {
 
-            $client = Client::find($request->client_id);
-            $book = Book::find($request->books_id);
+        $client = Client::find($request->client_id);
+        $book = Book::find($request->books_id);
 
-            if ($client && $book) {
-                $loan = Loan::create([
-                    'client_id' => $request->client_id,
-                    'books_id' => $request->books_id,
-                    'loan_date' => date('Y-m-d'),
-                    'delivery_date' => $request->delivery_date,
-                    'attendent_id' => Auth::user()->id,
-                ]);
+        if (isset($client) && isset($book) && $client->books < 5 && $book->borrowed_amounts < $book->available_quantity - 1) {
+            $loan = Loan::create([
+                'client_id' => $request->client_id,
+                'books_id' => $request->books_id,
+                'loan_date' => date('Y-m-d'),
+                'delivery_date' => $request->delivery_date,
+                'attendent_id' => Auth::user()->id,
+            ]);
 
-                if ($client->books < 5 && $book->borrowed_amounts < $book->available_quantity - 1) {
-                    $client->increment('books');
-                    $book->increment('borrowed_amounts');
+            $client->increment('books');
+            $book->increment('borrowed_amounts');
 
-                    $loan->save();
-                    $client->save();
-                    $book->save();
+            $loan->save();
+            $client->save();
+            $book->save();
 
-                    session()->flash('message', 'Empréstimo realizado com sucesso!');
-                    return redirect()->route('loans.index');
-
-                }
-
-                else {
-                    if ($client->books >= 5) {
-                        session()->flash('error', 'Erro! Não é possível realizar um empéstimo superior a 5 livros.');
-                        return redirect()->route('loans.create');
-                    }
-
-                    if ($book->borrowed_amounts > $book->available_quantity - 1) {
-                        session()->flash('error', 'Erro! Não há livros disponíveis para empréstimo.');
-                        return redirect()->route('loans.create');
-                    }
-                }
-
-            } else {
-                session()->flash('error', 'ID do livro ou do cliente não encontrado.');
-                return redirect()->route('loans.create');
-
-            }
-
+            session()->flash('message', 'Empréstimo realizado com sucesso!');
+            return redirect()->route('loans.index');
+        }
+            session()->flash('error', 'Não foi possível realizar o empréstimo, tente novamente!');
+            return redirect()->route('loans.create');
     }
 
     /**

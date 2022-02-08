@@ -96,7 +96,7 @@
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
 
-                        @if( date('Y-m-d') < $l->delivery_date ) No prazo @else Atrasado @endif </td>
+                        @if( date('Y-m-d') <= $l->delivery_date ) No prazo @else Atrasado @endif </td>
                       <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
                         <a href="{{route('loans.show', $l->id)}}" class="text-teal-600 hover:text-indigo-900">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
