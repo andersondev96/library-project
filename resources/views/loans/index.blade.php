@@ -77,6 +77,9 @@
                       <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">Remove</span>
                       </th>
+                      <th scope="col" class="relative px-6 py-3">
+                        <span class="sr-only">Back</span>
+                      </th>
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
@@ -132,6 +135,16 @@
                             </svg>
                             </a>
                         </form>
+                      </td>
+                      <td>
+                        <a href="{{ route('loans/deliver', $l->id) }}" class="text-green-700 hover:text-indigo-900">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clip-rule="evenodd" />
+                          </svg>
+                        </a>
                       </td>
                     </tr>
                     @endforeach

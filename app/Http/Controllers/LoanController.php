@@ -94,6 +94,28 @@ class LoanController extends Controller
     }
 
     /**
+     *
+     * @param  \App\Models\Loan  $loan
+     * @return \Illuminate\Http\Response
+     */
+    public function deliver(Loan $loan) {
+        $loanDate = \Carbon\Carbon::parse($loan->loan_date);
+        $deliveryDate = \Carbon\Carbon::parse($loan->delivery_date);
+        $returnDate = \Carbon\Carbon::parse(Date('Y-m-d'));
+        $diff = $returnDate->diffInDays($deliveryDate);
+        if ($returnDate > $deliveryDate) {
+            $trafficTicket = 1;
+            $trafficTicketValue = 'R$ '.number_format((2 * $diff), 2, ',', '.');
+        } else {
+            $trafficTicket = 0;
+            $trafficTicketValue = 'R$ 0,00';
+        }
+
+        return view('loans.deliver', ['loan' => $loan, 'returnDate' => $returnDate, 'trafficTicket' => $trafficTicket, 'trafficTicketValue' => $trafficTicketValue]);
+
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Loan  $loan

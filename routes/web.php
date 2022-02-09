@@ -34,4 +34,6 @@ Route::resource('/loans', LoanController::class)->middleware(['auth']);
 
 Route::resource('/states', StateController::class);
 
+Route::get('loans/deliver/{loan}', ['as' => 'loans/deliver', 'uses' => 'App\Http\Controllers\LoanController@deliver']);
+
 require __DIR__.'/auth.php';
