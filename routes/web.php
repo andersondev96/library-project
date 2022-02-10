@@ -36,4 +36,6 @@ Route::resource('/states', StateController::class);
 
 Route::get('loans/deliver/{loan}', ['as' => 'loans/deliver', 'uses' => 'App\Http\Controllers\LoanController@deliver']);
 
+Route::put('loans/finishDeliver/{loan}', ['as' => 'loans/finishDeliver', 'uses' => 'App\Http\Controllers\LoanController@finishDeliver']);
+
 require __DIR__.'/auth.php';

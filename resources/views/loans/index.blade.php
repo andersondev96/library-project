@@ -99,7 +99,7 @@
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
 
-                        @if( date('Y-m-d') <= $l->delivery_date ) No prazo @else Atrasado @endif </td>
+                        @if( date('Y-m-d') <= $l->delivery_date && !isset($l->return_date) ) No prazo @elseif(isset($l->return_date)) Entregue @else Atrasado @endif </td>
                       <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
                         <a href="{{route('loans.show', $l->id)}}" class="text-teal-600 hover:text-indigo-900">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -110,6 +110,18 @@
                           </svg>
                         </a>
                       </td>
+
+                      <td>
+                        <a href="{{ route('loans/deliver', $l->id) }}" class="text-green-700 hover:text-indigo-900">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clip-rule="evenodd" />
+                          </svg>
+                        </a>
+                      </td>
+                      @if(!isset($l->return_date))
                       <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
                         <a href="{{route('loans.edit', $l->id)}}" class="text-indigo-600 hover:text-indigo-900">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -119,6 +131,7 @@
                           </svg>
                         </a>
                       </td>
+
                       <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
                         <form name="formDelete" action="{{ route('loans.destroy', $l->id) }}" method="post"
                           onSubmit="return confirm('Confirma a exclusão do empréstimo?')">
@@ -136,16 +149,9 @@
                             </a>
                         </form>
                       </td>
-                      <td>
-                        <a href="{{ route('loans/deliver', $l->id) }}" class="text-green-700 hover:text-indigo-900">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path fill-rule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clip-rule="evenodd" />
-                          </svg>
-                        </a>
-                      </td>
+                      @endif
+
+
                     </tr>
                     @endforeach
                   </tbody>

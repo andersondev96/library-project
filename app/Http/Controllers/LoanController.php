@@ -101,18 +101,45 @@ class LoanController extends Controller
     public function deliver(Loan $loan) {
         $loanDate = \Carbon\Carbon::parse($loan->loan_date);
         $deliveryDate = \Carbon\Carbon::parse($loan->delivery_date);
-        $returnDate = \Carbon\Carbon::parse(Date('Y-m-d'));
-        $diff = $returnDate->diffInDays($deliveryDate);
+        $returnDate = isset($loan->return_date) ? $loan->return_date : Date('Y-m-d');
+        $diff = \Carbon\Carbon::parse($returnDate)->diffInDays($deliveryDate);
         if ($returnDate > $deliveryDate) {
             $trafficTicket = 1;
-            $trafficTicketValue = 'R$ '.number_format((2 * $diff), 2, ',', '.');
+            $trafficTicketValue = 2 * $diff;
         } else {
             $trafficTicket = 0;
-            $trafficTicketValue = 'R$ 0,00';
+            $trafficTicketValue = 0;
         }
 
         return view('loans.deliver', ['loan' => $loan, 'returnDate' => $returnDate, 'trafficTicket' => $trafficTicket, 'trafficTicketValue' => $trafficTicketValue]);
 
+    }
+
+    public function finishDeliver(Request $request, Loan $loan) {
+
+       $client = Client::find($loan->client_id);
+       $book = Book::find($loan->books_id);
+
+        $loan->update([
+            'return_date' => $request->return_date,
+            'traffic_ticket' => substr($request->traffic_ticket, 3),
+        ]);
+
+        $loan->save();
+
+        if (isset($client)) {
+            $client->decrement('books');
+            $client->increment('traffic_ticket', $loan->traffic_ticket);
+            $client->save();
+        }
+
+        if (isset($book)) {
+            $book->increment('borrowed_amounts');
+            $book->save();
+        }
+
+        session()->flash('message', 'Devolução realizada com sucesso');
+        return redirect()->route('loans.index');
     }
 
     /**
@@ -135,12 +162,33 @@ class LoanController extends Controller
      */
     public function update(Request $request, Loan $loan)
     {
-        //$loanId = Loan::find($loan->id);
+        $old_client = Client::find($loan->client_id);
+        $new_client = Client::find($request->client_id);
 
-        $loan->fill($request->all());
-        $loan->save();
-        session()->flash('message', 'Empréstimo atualizado com sucesso');
-        return redirect()->route('loans.index');
+        $old_book = Book::find($loan->books_id);
+        $new_book = Book::find($request->books_id);
+
+        if(isset($new_client) && isset($new_book) )
+            {
+                if ($old_client != $new_client && $new_client->books < 5) {
+                    $old_client->decrement('books');
+                    $new_client->increment('books');
+                }
+
+                if ($old_book != $new_book && $new_book->borrowed_amounts < $new_book->available_quantity - 1) {
+                    $old_book->decrement('borrowed_amounts');
+                    $new_book->increment('borrowed_amounts');
+                }
+
+                $loan->fill($request->all());
+                $loan->save();
+                session()->flash('message', 'Empréstimo atualizado com sucesso');
+                return redirect()->route('loans.index');
+
+        } else {
+                session()->flash('error', 'Erro ao atualizar o empréstimo');
+                return redirect()->route('loans.index');
+        }
     }
 
     /**
