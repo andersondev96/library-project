@@ -6,6 +6,8 @@ use App\Http\Controllers\StateController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\FineController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +34,13 @@ Route::resource('/clients',ClientController::class)->middleware(['auth']);
 
 Route::resource('/loans', LoanController::class)->middleware(['auth']);
 
-Route::resource('/states', StateController::class);
+Route::resource('/fines', FineController::class)->middleware(['auth']);
+
+Route::get('/fines/payment/{client}', ['as' => '/fines/payment', 'uses' => 'App\Http\Controllers\FineController@payment'])->middleware(['auth']);
 
 Route::get('loans/deliver/{loan}', ['as' => 'loans/deliver', 'uses' => 'App\Http\Controllers\LoanController@deliver']);
 
 Route::put('loans/finishDeliver/{loan}', ['as' => 'loans/finishDeliver', 'uses' => 'App\Http\Controllers\LoanController@finishDeliver']);
 
+Route::resource('/users', UserController::class)->middleware(['auth']);
 require __DIR__.'/auth.php';

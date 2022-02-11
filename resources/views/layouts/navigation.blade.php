@@ -34,6 +34,17 @@
                         {{ __('Empréstimos') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('fines.index')" :active="request()->routeIs('fines.index') || (\Request::is('fines/*'))">
+                        {{ __('Multas') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index') || (\Request::is('users/*'))">
+                        {{ __('Usuários') }}
+                    </x-nav-link>
+                </div>
             </div>
 
 

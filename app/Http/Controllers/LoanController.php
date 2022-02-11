@@ -19,16 +19,23 @@ class LoanController extends Controller
      */
     public function index(Request $request)
     {
-        $loans = Loan::orderBy('loan_date', 'DESC');
+        $loans = Loan::orderBy('return_date', 'ASC')->orderBy('loan_date', 'ASC');
+
+        $loans = $loans
+                ->join('books', 'books.id', '=', 'loans.books_id')
+                ->join('clients', 'clients.id', '=', 'loans.client_id')
+                ->select('loans.*', 'books.title', 'clients.name');
+
+        $clients = Client::orderBy('id')->get();
+
 
         if ($request->name) {
-            $loans->where('name', 'like', "%$request->name%")
-                ->join('clients', 'clients.id', '=', 'client_id');
+            $loans->where('name', 'like', "%$request->name%");
         }
 
         $loans= $loans->simplePaginate(10);
 
-        $clients = Client::orderBy('id')->get();
+
         $books = Book::orderBy('id')->get();
 
         return view('loans.index', ['loans' => $loans, 'clients' => $clients, 'books' => $books]);
@@ -90,6 +97,7 @@ class LoanController extends Controller
      */
     public function show(Loan $loan)
     {
+
         return view('loans.show', ['loan' => $loan]);
     }
 
@@ -123,6 +131,7 @@ class LoanController extends Controller
         $loan->update([
             'return_date' => $request->return_date,
             'traffic_ticket' => substr($request->traffic_ticket, 3),
+            'paid' => 0,
         ]);
 
         $loan->save();

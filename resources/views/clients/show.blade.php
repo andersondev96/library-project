@@ -59,7 +59,7 @@
               </tr>
               <tr>
                 <td class="border px-4 py-2">Multas</td>
-                <td class="border px-4 py-2">{{ $client->traffic_ticket }}</td>
+                <td class="border px-4 py-2">{{ 'R$ '.number_format(($client->traffic_ticket), 2, '.', '.') }}</td>
               </tr>
             </tbody>
           </table>

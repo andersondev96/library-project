@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Empréstimos') }}
+      {{ __('Usuários') }}
     </h2>
   </x-slot>
 
@@ -11,11 +11,11 @@
         <div class="p-6 bg-white border-b border-gray-200">
 
           <div class="flex flex-row w-full items-center justify-between">
-            <form action="{{ route('loans.index')}}" method="GET">
+            <form action="{{ route('users.index')}}" method="GET">
               <div class="flex flex-row items-center mb-4">
                 <input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight"
-                  id="input-search" name="name" type="text" placeholder="Buscar por cliente" />
+                  id="input-search" name="name" type="text" placeholder="Buscar por nome" />
 
 
                 <button class="ml-2">
@@ -27,15 +27,9 @@
                 </button>
             </form>
           </div>
-          <div>
-            <a href="{{route('loans.create')}}">
-              <button class="bg-blue-500 h-10 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 rounded">
-                Novo empréstimo
-              </button>
-            </a>
-          </div>
+
         </div>
-        <a href="{{route('loans.index')}}">
+        <a href="{{route('users.index')}}">
           <div class="ml-1 text-xs mb-2 text-blue-400 text-opacity-75">
             EXIBIR TODOS OS RESULTADOS
           </div>
@@ -54,23 +48,15 @@
                       </th>
                       <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Data do empréstimo
+                        Nome
                       </th>
                       <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Livro
+                        E-mail
                       </th>
                       <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Cliente
-                      </th>
-                      <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Data de devolução
-                      </th>
-                      <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Status
+                        Criado em
                       </th>
                       <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">View</span>
@@ -81,35 +67,25 @@
                       <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">Remove</span>
                       </th>
-                      <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only">Back</span>
-                      </th>
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach($loans as $l)
+                    @foreach($users as $u)
                     <tr>
-                    <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                       {{$l->id}}
+                      <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
+                        {{ $u->id }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                        {{ \Carbon\Carbon::parse($l->loan_date)->format('d/m/Y') }}
+                        {{ $u->name }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                        {{ $l->title }}
+                        {{ $u->email }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                        {{ $l->name}}
+                        {{ \Carbon\Carbon::parse($u->created_at)->format('d/m/Y') }}
                       </td>
-                      <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                        {{ \Carbon\Carbon::parse($l->delivery_date)->format('d/m/Y') }}
-                      </td>
-                      <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-
-                        @if( date('Y-m-d') <= $l->delivery_date && !isset($l->return_date) ) No prazo
-                          @elseif(isset($l->return_date)) Entregue @else Atrasado @endif </td>
                       <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{route('loans.show', $l->id)}}" class="text-teal-600 hover:text-indigo-900">
+                        <a href="" class="text-teal-600 hover:text-indigo-900">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path fill-rule="evenodd"
@@ -118,20 +94,8 @@
                           </svg>
                         </a>
                       </td>
-
-                      <td>
-                        <a href="{{ route('loans/deliver', $l->id) }}" class="text-green-700 hover:text-indigo-900">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path fill-rule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clip-rule="evenodd" />
-                          </svg>
-                        </a>
-                      </td>
-                      @if(!isset($l->return_date))
                       <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{route('loans.edit', $l->id)}}" class="text-indigo-600 hover:text-indigo-900">
+                        <a href="" class="text-indigo-600 hover:text-indigo-900">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path
@@ -139,10 +103,9 @@
                           </svg>
                         </a>
                       </td>
-
                       <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
-                        <form name="formDelete" action="{{ route('loans.destroy', $l->id) }}" method="post"
-                          onSubmit="return confirm('Confirma a exclusão do empréstimo?')">
+                        <form name="formDelete" action="" method="post"
+                          onSubmit="return confirm('Confirma a exclusão do cliente?')">
 
                           @csrf
                           @method('DELETE')
@@ -157,16 +120,13 @@
                             </a>
                         </form>
                       </td>
-                      @endif
-
-
                     </tr>
                     @endforeach
                   </tbody>
                 </table>
               </div>
               <div class="mt-4">
-                {{ $loans->links() }}
+                {{ $users->links() }}
               </div>
             </div>
           </div>

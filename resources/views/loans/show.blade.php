@@ -38,7 +38,8 @@
               </tr>
               <tr>
                 <td class="border px-4 py-2">Devolvido em</td>
-                <td class="border px-4 py-2">{{$loan->return_date}}</td>
+                <td class="border px-4 py-2">
+                  {{isset($loan->return_date) ? \Carbon\Carbon::parse($loan->return_date)->format('d/m/Y') : ''}}</td>
               </tr>
               <tr>
                 <td class="border px-4 py-2">Multa</td>
@@ -46,11 +47,20 @@
               </tr>
               <tr>
                 <td class="border px-4 py-2">Paga</td>
-                <td class="border px-4 py-2">{{$loan->paid}}</td>
+                <td class="border px-4 py-2">
+                  @if(isset($loan->return_date) && $loan->traffic_ticket > 0)
+                  @if($loan->paid == 0)
+                  Não
+                  @else
+                  Sim
+                  @endif
+                  @endif
+                </td>
               </tr>
 
             </tbody>
           </table>
+          @if(!isset($loan->return_date))
           <div class="flex flex-row gap-2 mt-4">
             <a href="{{ route('loans.edit', $loan->id)}}">
               <button
@@ -74,6 +84,7 @@
             </form>
 
           </div>
+          @endif
         </div>
       </div>
     </div>
