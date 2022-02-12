@@ -27,7 +27,13 @@
                 </button>
             </form>
           </div>
-
+          <div>
+            <a href="">
+              <button class="bg-blue-500 h-10 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 rounded">
+                Adicionar usuáro
+              </button>
+            </a>
+          </div>
         </div>
         <a href="{{route('users.index')}}">
           <div class="ml-1 text-xs mb-2 text-blue-400 text-opacity-75">
