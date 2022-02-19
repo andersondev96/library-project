@@ -22,33 +22,34 @@
             <div class="flex flex-wrap -mx-3 mb-4">
               <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-books_id">
-                  ID do livro
+                  Livro
                 </label>
-                <x-input
+
+                <select
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite"
-                  id="grid-books_id" name="books_id" value="{{ $loan->books_id }}" required type="text" />
-                @if($errors->has('books_id'))
-                <div class="text-red-500 text-sm">
-                  @foreach($errors->get('books_id') as $error)
-                  {{ $error }}
+                  id="grid-books_id" name="books_id">
+                  @foreach($books as $b)
+                  <option value="{{ $b->id }}" @if ($b->id == $loan->books->id) selected @endif>
+                    {{ strlen($b->title) > 68 ? substr($b->title, 0, 68) . '...' : $b->title }}</option>
                   @endforeach
-                </div>
-                @endif
+                </select>
+
               </div>
               <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-client_id">
-                  ID do cliente
+                  Cliente
                 </label>
-                <x-input
+                <select
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-client_id" name="client_id" value="{{ $loan->client_id }}" required type="text" />
-                @if($errors->has('client_id'))
-                <div class="text-red-500 text-sm">
-                  @foreach($errors->get('client_id') as $error)
-                  {{ $error }}
+                  id="grid-client_id" name="client_id">
+
+                  @foreach($clients as $c)
+                  <option value="{{ $c->id }}" @if ($c->id == $loan->client->id) selected @endif>
+                    {{ $c->name }}
+                  </option>
                   @endforeach
-                </div>
-                @endif
+
+                </select>
               </div>
             </div>
 

@@ -24,7 +24,7 @@
                 </label>
                 <x-input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite"
-                  id="grid-cpf" name="cpf" :value="old('cpf')" required  type="text" placeholder="XXX.XXX.XXX-XX" />
+                  id="grid-cpf" name="cpf" :value="old('cpf')" required type="text" placeholder="XXX.XXX.XXX-XX" />
                 @if($errors->has('cpf'))
                 <div class="text-red-500 text-sm">
                   @foreach($errors->get('cpf') as $error)
@@ -54,7 +54,8 @@
                 </label>
                 <x-input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-name" name="name" :value="old('name')" required type="text" placeholder="Digite o nome do cliente" />
+                  id="grid-name" name="name" :value="old('name')" required type="text"
+                  placeholder="Digite o nome do cliente" />
 
                 @if($errors->has('name'))
                 <div class="text-red-500 text-sm">
@@ -89,7 +90,8 @@
                 </label>
                 <x-input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-street" type="text" name="street" :value="old('street')" required placeholder="Digite o nome da rua" />
+                  id="grid-street" type="text" name="street" :value="old('street')" required
+                  placeholder="Digite o nome da rua" />
 
                 @if($errors->has('street'))
                 <div class="text-red-500 text-sm">
@@ -106,7 +108,8 @@
                 </label>
                 <x-input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-number" name="number" :value="old('number')" required type="text" placeholder="Digite o número" />
+                  id="grid-number" name="number" :value="old('number')" required type="text"
+                  placeholder="Digite o número" />
 
                 @if($errors->has('number'))
                 <div class="text-red-500 text-sm">
@@ -125,7 +128,8 @@
                 </label>
                 <x-input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-complement" name="complement"  :value="old('complement')" required type="text" placeholder="Bloco/Apartamento" />
+                  id="grid-complement" name="complement" :value="old('complement')" type="text"
+                  placeholder="Bloco/Apartamento" />
 
                 @if($errors->has('complement'))
                 <div class="text-red-500 text-sm">
@@ -141,7 +145,8 @@
                 </label>
                 <x-input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-district" type="text" name="district" :value="old('district')" required placeholder="Digite o bairro" />
+                  id="grid-district" type="text" name="district" :value="old('district')" required
+                  placeholder="Digite o bairro" />
 
                 @if($errors->has('district'))
                 <div class="text-red-500 text-sm">
@@ -158,7 +163,8 @@
                 </label>
                 <x-input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-zip_code" name="zip_code" :value="old('zip_code')" required type="text" placeholder="XX.XXX-XXX" />
+                  id="grid-zip_code" name="zip_code" :value="old('zip_code')" required type="text"
+                  placeholder="XX.XXX-XXX" />
 
                 @if($errors->has('zip_code'))
                 <div class="text-red-500 text-sm">
@@ -215,7 +221,8 @@
                 </label>
                 <x-input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-email" name="email" :value="old('email')" required type="email" placeholder="Digite o e-mail" />
+                  id="grid-email" name="email" :value="old('email')" required type="email"
+                  placeholder="Digite o e-mail" />
 
                 @if($errors->has('email'))
                 <div class="text-red-500 text-sm">
@@ -234,7 +241,8 @@
                 </label>
                 <x-input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-telephone" name="telephone" :value="old('telephone')" required type="text" placeholder="(XX)XXXXX-XXXX" />
+                  id="grid-telephone" name="telephone" :value="old('telephone')" required type="text"
+                  placeholder="(XX)XXXXX-XXXX" />
 
                 @if($errors->has('telephone'))
                 <div class="text-red-500 text-sm">
@@ -250,7 +258,7 @@
                 </label>
                 <select
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-type" name="type">
+                  id="grid-type" name="type" :value="old('type')">
 
                   <option value="NULL" disabled selected>Selecione uma opção</option>
                   <option value="Aluno">Aluno</option>
@@ -273,7 +281,7 @@
                 </label>
                 <select
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-department" name="department">
+                  id="grid-department" name="department" :value="old('department')">
                   <option value="NULL" disabled selected>Selecione uma opção</option>
                   <option value="DCEX">DCEX</option>
                   <option value="DCHM">DCHM</option>

@@ -69,14 +69,9 @@
                         Editora
                       </th>
                       <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only">View</span>
+                        <span class="sr-only">Options</span>
                       </th>
-                      <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only">Edit</span>
-                      </th>
-                      <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only">Remove</span>
-                      </th>
+
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
@@ -89,16 +84,17 @@
                         {{ $b->isbn }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                        {{ $b->title }}
+                        {{ strlen($b->title) > 60 ? substr($b->title, 0, 60) . "..." : $b->title }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                        {{ $b->author }}
+                        {{ strlen($b->author) > 20 ? substr($b->author, 0, 20) . "..." : $b->author }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                        {{ $b->publishing_company }}
+                        {{ strlen($b->publishing_company) > 20 ? substr($b->publishing_company, 0, 20) . "..." : $b->publishing_company }}
                       </td>
-                      <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{ route('books.show', $b->id)}}" class="text-teal-600 hover:text-indigo-900">
+
+                      <td class="flex flex-row gap-2 px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+                        <a href="{{ route('books.show', $b->id)}}" class="text-teal-600 hover:text-teal-900">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path fill-rule="evenodd"
@@ -106,8 +102,7 @@
                               clip-rule="evenodd" />
                           </svg>
                         </a>
-                      </td>
-                      <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+
                         <a href="{{ route('books.edit', $b->id)}}" class="text-indigo-600 hover:text-indigo-900">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                             fill="currentColor">
@@ -115,24 +110,25 @@
                               d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                           </svg>
                         </a>
-                      </td>
-                      <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+
                         <form name="formDelete" action="{{ route('books.destroy', $b->id)}}" method="post"
                           onSubmit="return confirm('Confirma a exclusão do livro?')">
 
                           @csrf
                           @method('DELETE')
 
-                          <button type="submit" class="text-red-500 hover:text-indigo-900">
+                          <button type="submit" class="text-red-500 hover:text-red-900">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                               fill="currentColor">
                               <path fill-rule="evenodd"
                                 d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
                                 clip-rule="evenodd" />
                             </svg>
-                          </a>
+                            </a>
                         </form>
+
                       </td>
+
                     </tr>
                     @endforeach
                   </tbody>

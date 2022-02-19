@@ -75,22 +75,14 @@
                       <th scope="col" class="relative px-6 py-3">
                         <span class="sr-only">View</span>
                       </th>
-                      <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only">Edit</span>
-                      </th>
-                      <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only">Remove</span>
-                      </th>
-                      <th scope="col" class="relative px-6 py-3">
-                        <span class="sr-only">Back</span>
-                      </th>
+
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
                     @foreach($loans as $l)
                     <tr>
-                    <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                       {{$l->id}}
+                      <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
+                        {{$l->id}}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
                         {{ \Carbon\Carbon::parse($l->loan_date)->format('d/m/Y') }}
@@ -108,8 +100,8 @@
 
                         @if( date('Y-m-d') <= $l->delivery_date && !isset($l->return_date) ) No prazo
                           @elseif(isset($l->return_date)) Entregue @else Atrasado @endif </td>
-                      <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="{{route('loans.show', $l->id)}}" class="text-teal-600 hover:text-indigo-900">
+                      <td class="flex flex-row gap-2 px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+                        <a href="{{route('loans.show', $l->id)}}" class="text-teal-600 hover:text-teal-900">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path fill-rule="evenodd"
@@ -117,10 +109,8 @@
                               clip-rule="evenodd" />
                           </svg>
                         </a>
-                      </td>
 
-                      <td>
-                        <a href="{{ route('loans/deliver', $l->id) }}" class="text-green-700 hover:text-indigo-900">
+                        <a href="{{ route('loans/deliver', $l->id) }}" class="text-green-700 hover:text-green-900">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path fill-rule="evenodd"
@@ -128,9 +118,8 @@
                               clip-rule="evenodd" />
                           </svg>
                         </a>
-                      </td>
-                      @if(!isset($l->return_date))
-                      <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
+
+                        @if(!isset($l->return_date))
                         <a href="{{route('loans.edit', $l->id)}}" class="text-indigo-600 hover:text-indigo-900">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                             fill="currentColor">
@@ -138,16 +127,14 @@
                               d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                           </svg>
                         </a>
-                      </td>
 
-                      <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
                         <form name="formDelete" action="{{ route('loans.destroy', $l->id) }}" method="post"
                           onSubmit="return confirm('Confirma a exclusão do empréstimo?')">
 
                           @csrf
                           @method('DELETE')
 
-                          <button type="submit" class="text-red-500 hover:text-indigo-900">
+                          <button type="submit" class="text-red-500 hover:text-red-900">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                               fill="currentColor">
                               <path fill-rule="evenodd"
@@ -156,10 +143,10 @@
                             </svg>
                             </a>
                         </form>
+
+                        @endif
+
                       </td>
-                      @endif
-
-
                     </tr>
                     @endforeach
                   </tbody>

@@ -159,7 +159,10 @@ class LoanController extends Controller
      */
     public function edit(Loan $loan)
     {
-        return view('loans.edit', ['loan' => $loan]);
+        $clients = Client::orderBy('id')->get();
+        $books = Book::orderBy('id')->get();
+
+        return view('loans.edit', ['loan' => $loan, 'clients' => $clients, 'books' => $books]);
     }
 
     /**

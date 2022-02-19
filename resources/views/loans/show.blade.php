@@ -6,12 +6,17 @@
 
   </x-slot>
 
+
+
   <div class="py-12">
     <x-back />
+
+
 
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
+
           <table class="table-auto">
             <thead>
               <tr>
@@ -49,7 +54,7 @@
                 <td class="border px-4 py-2">Paga</td>
                 <td class="border px-4 py-2">
                   @if(isset($loan->return_date) && $loan->traffic_ticket > 0)
-                  @if($loan->paid == 0)
+                  @if($loan->paid > 0)
                   Não
                   @else
                   Sim
@@ -86,6 +91,9 @@
           </div>
           @endif
         </div>
+
+
+
       </div>
     </div>
   </div>
