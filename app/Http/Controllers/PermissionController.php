@@ -14,7 +14,9 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        $permissions = Permission::orderBy('id')->get();
+
+        return view('permissions.index', ['permissions' => $permissions]);
     }
 
     /**
@@ -24,7 +26,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

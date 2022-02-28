@@ -7,6 +7,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\FineController;
+use App\Http\Controllers\UserPermissionController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -33,6 +34,8 @@ Route::resource('/books', BookController::class)->middleware(['auth']);
 Route::resource('/clients',ClientController::class)->middleware(['auth']);
 
 Route::resource('/loans', LoanController::class)->middleware(['auth']);
+
+Route::resource('/permissions', UserPermissionController::class)->middleware(['auth']);
 
 Route::resource('/fines', FineController::class)->middleware(['auth']);
 

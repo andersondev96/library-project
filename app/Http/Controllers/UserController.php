@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\User_Permission;
 
 class UserController extends Controller
 {
@@ -14,7 +17,15 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::orderBy('id');
+        $userPermissions = User_Permission::orderBy('id')->get();
+        $userId = Auth::user()->id;
+
+        $permissionUserId = User_Permission::where('user_id', '=', $userId)->get();
+        $permissionAdministrator = $permissionUserId->where('permission_id', '=', '1');
+
+
+        if (count($permissionAdministrator) > 0) {
+            $users = User::orderBy('id');
 
         if ($request->name) {
             $users->where('name', 'like', "%$request->name%");
@@ -23,6 +34,14 @@ class UserController extends Controller
         $users = $users->simplePaginate(10);
 
         return view('users.index', ['users' => $users]);
+        } else {
+            session()->flash('error', 'Você não tem permissão para acessar esta página.');
+            return redirect()->route('dashboard');
+        }
+
+
+
+
     }
 
     /**
