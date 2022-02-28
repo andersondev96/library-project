@@ -14,9 +14,11 @@
             <h1 class="text-xl font-medium text-gray-800">Editar perfil</h1>
           </div>
 
-          <form method="POST" action="{{ route('register')}}" class="py-6 px-12 w-full w-full">
+          <form method="POST" action="{{ route('users.update', $user->id )}}" class="py-6 px-12 w-full w-full">
 
             @csrf
+            @method('PUT')
+
             <div class="flex flex-wrap -mx-3 mb-4">
               <div class="w-full md:w-2/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
@@ -36,13 +38,14 @@
                     transition
                     ease-in-out
                     m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="formFileSm" type="file">
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="formFileSm"
+                  type="file">
 
               </div>
             </div>
 
             <div class="flex flex-wrap -mx-3 mb-4">
-              <div class="w-full md:w-2/6 px-3 mb-4 md:mb:0">
+              <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-name">
                   Nome
                 </label>
@@ -50,7 +53,7 @@
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite"
                   id="grid-name" name="name" value="{{ $user->name }}" required type="text" />
               </div>
-              <div class="w-full md:w-2/6 px-3 mb-4 md:mb:0">
+              <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-email">
                   E-mail
                 </label>
@@ -63,12 +66,33 @@
 
             <div class="flex flex-wrap -mx-3 mb-4">
               <div class="w-full md:w-2/6 px-3 mb-4 md:mb:0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                  for="grid-atual_password">
+                  Senha atual
+                </label>
+                <x-input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
+                  id="grid-actual_password" name="actual_password" :value="old('actual_password')" required
+                  type="password" />
+
+              </div>
+
+              <div class="w-full md:w-2/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                   Nova senha
                 </label>
                 <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-password" name="password" :value="old('password')" required type="password" />
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 @if($errors->has('password')) focus:outline-none border-red-500 @endif"
+                  id="grid-password" name="password" :value="old('password')" type="password" />
+
+                @if($errors->has('password'))
+                <div class="text-red-500 text-sm">
+                  @foreach($errors->get('password') as $error)
+                  {{ $error }}
+                  @endforeach
+                </div>
+                @endif
+
               </div>
 
               <div class="w-full md:w-2/6 px-3 mb-4 md:mb:0">
@@ -77,9 +101,17 @@
                   Confirmar senha
                 </label>
                 <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-street" type="password" name="password_confirmation" :value="old('password_confirmation')"
-                  required />
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 @if($errors->has('password_confirmation')) focus:outline-none border-red-500 @endif"
+                  id="grid-street" type="password" name="password_confirmation" :value="old('password_confirmation')" />
+
+                @if($errors->has('password_confirmation'))
+                <div class="text-red-500 text-sm">
+                  @foreach($errors->get('password_confirmation') as $error)
+                  {{ $error }}
+                  @endforeach
+                </div>
+                @endif
+
               </div>
             </div>
 

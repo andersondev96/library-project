@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\User_Permission;
 
+use Illuminate\Support\Facades\Hash;
+
+
 class UserController extends Controller
 {
     /**
@@ -96,7 +99,44 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        /* echo($input['actual_password']);
+        echo(Auth::user()->password); */
+
+        $users = User::find($id);
+
+        if (! Hash::check($input['actual_password'], Auth::user()->password)) {
+            session()->flash('error', 'Erro ao atualizar usuário.');
+            return redirect()->route('users.index');
+        }
+        else {
+            $validation = $request->validate([
+                'name' => 'required',
+                'email' => 'required|email',
+                'password' => 'required|min:8|confirmed',
+                'password_confirmation' => 'required|min:8'
+            ]);
+
+
+
+            $input['password'] = Hash::make($input['password']);
+
+            $users->update($input);
+
+            session()->flash('message', 'Usuário atualizado com sucesso.');
+            return redirect()->route('users.index');
+
+        }
+
+        /* if (Hash::check($request->, Auth::user()->password))
+        {
+            $request->save();
+            session()->flash('message', 'Usuário atualizado com sucesso');
+            return redirect()->route('users.index');
+        } else {
+            session()->flash('error', 'Erro ao atualizar usuário');
+            return redirect()->route('users.index');
+        } */
     }
 
     /**
