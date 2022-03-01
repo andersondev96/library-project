@@ -14,9 +14,11 @@
             <h1 class="text-xl font-medium text-gray-800">Editar permissão</h1>
           </div>
 
-          <form method="POST" action="{{ route('permissions.store') }}" class="py-6 px-12 w-full w-full">
+          <form method="POST" action="{{ route('permissions.update', $permission->id )}}"
+            class="py-6 px-12 w-full w-full">
 
             @csrf
+            @method('PUT')
             <div class="flex flex-wrap -mx-3 mb-4">
               <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-user_id">
@@ -24,10 +26,14 @@
                 </label>
                 <select
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite"
-                  id="grid-user_id" name="user_id">
+                  id="grid-user_id" name="user_id" disabled>
 
                   @foreach($users as $u)
-                  <option value="{{ $u->id }}">{{ $u->name }}</option>
+                  <option value="{{ $u->id }}" @if($u->id == $permission->users->id)
+                    selected
+                    @endif>
+                    {{ $u->name  }}
+                  </option>
                   @endforeach
                 </select>
 
@@ -41,8 +47,11 @@
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
                   id="grid-permission_id" name="permission_id">
 
-                  @foreach($permissions as $p)
-                  <option value="{{ $p->id }}">{{ $p->name }}</option>
+                  @foreach($permissions as $ps)
+                  <option value="{{ $ps->id }}" @if($ps->id == $permission->permissions->id)
+                    selected
+                    @endif
+                    >{{ $ps->name }}</option>
                   @endforeach
                 </select>
               </div>
@@ -57,6 +66,7 @@
             </div>
 
           </form>
+
         </div>
       </div>
     </div>

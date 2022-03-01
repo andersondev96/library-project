@@ -100,8 +100,6 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        /* echo($input['actual_password']);
-        echo(Auth::user()->password); */
 
         $users = User::find($id);
 
@@ -113,30 +111,32 @@ class UserController extends Controller
             $validation = $request->validate([
                 'name' => 'required',
                 'email' => 'required|email',
-                'password' => 'required|min:8|confirmed',
-                'password_confirmation' => 'required|min:8'
+                'actual_password' => 'required|min:8',
             ]);
 
+            $users->name = $input['name'];
+            $users->email = $input['email'];
 
+            if (isset($input['password'])) {
 
-            $input['password'] = Hash::make($input['password']);
+                $validation_password = $request->validate([
+                    'password' => 'required|min:8|confirmed',
+                    'password_confirmation' => 'required|min:8'
+                ]);
 
-            $users->update($input);
+                $input['password'] = Hash::make($input['password']);
+                $users->password = $input['password'];
+            }
+
+            $users->save();
+
 
             session()->flash('message', 'Usuário atualizado com sucesso.');
             return redirect()->route('users.index');
 
         }
 
-        /* if (Hash::check($request->, Auth::user()->password))
-        {
-            $request->save();
-            session()->flash('message', 'Usuário atualizado com sucesso');
-            return redirect()->route('users.index');
-        } else {
-            session()->flash('error', 'Erro ao atualizar usuário');
-            return redirect()->route('users.index');
-        } */
+
     }
 
     /**
@@ -147,6 +147,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        session()->flash('message', 'Usuário excluído com sucesso');
+        return redirect()->route('users.index');
     }
 }

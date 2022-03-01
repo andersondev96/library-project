@@ -18,7 +18,7 @@ class UserPermissionController extends Controller
      */
     public function index()
     {
-        $userPermissions = User_Permission::orderBy('id')->get();
+        $permission = User_Permission::orderBy('id')->get();
         $userId = Auth::user()->id;
 
        $permissionUserId = User_Permission::where('user_id', '=', $userId)->get();
@@ -26,7 +26,7 @@ class UserPermissionController extends Controller
 
 
         if (count($permissionAdministrator) > 0) {
-            return view('permissions.index', [ 'userPermissions' => $userPermissions ]);
+            return view('permissions.index', [ 'permission' => $permission ]);
         } else {
             session()->flash('error', 'Você não tem permissão para acessar esta página.');
             return redirect()->route('dashboard');
@@ -54,9 +54,16 @@ class UserPermissionController extends Controller
      */
     public function store(Request $request)
     {
-        User_Permission::create($request->all());
-        session()->flash('message', 'Permissão adicionada com sucesso');
-        return redirect()->route('permissions.index');
+        $permissions = User_Permission::orderBy('id')->where('user_id', '=', $request->user_id)->get();
+
+        if (count($permissions) == 0) {
+            User_Permission::create($request->all());
+            session()->flash('message', 'Permissão adicionada com sucesso');
+            return redirect()->route('permissions.index');
+        } else {
+            session()->flash('error', 'Usuário já tem permissões cadastradas.');
+            return redirect()->route('permissions.index');
+        }
     }
 
     /**
@@ -73,15 +80,15 @@ class UserPermissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\User_Permission  $user_Permission
+     * @param  \App\Models\User_Permission  $userPermissions
      * @return \Illuminate\Http\Response
      */
-    public function edit(User_Permission $user_Permission)
+    public function edit(User_Permission $permission)
     {
         $users = User::orderBy('id')->get();
         $permissions = Permission::orderBy('id')->get();
 
-        return view('permissions.edit', ['user_Permission' => $user_Permission, 'users' => $users, 'permissions' => $permissions]);
+         return view('permissions.edit', ['permission' => $permission, 'users' => $users, 'permissions' => $permissions]);
     }
 
     /**
@@ -91,9 +98,14 @@ class UserPermissionController extends Controller
      * @param  \App\Models\User_Permission  $user_Permission
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User_Permission $user_Permission)
+    public function update(Request $request, User_Permission $permission)
     {
-        //
+
+        $permission->fill($request->all());
+        $permission->save();
+        session()->flash('message', 'Permissão atualizada com sucesso');
+        return redirect()->route('permissions.index');
+
     }
 
     /**
@@ -102,8 +114,11 @@ class UserPermissionController extends Controller
      * @param  \App\Models\User_Permission  $user_Permission
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User_Permission $user_Permission)
+    public function destroy(User_Permission $permission)
     {
-        //
+        $permission->delete();
+        session()->flash('message', 'Permissão excluída com sucesso');
+        return redirect()->route('permissions.index');
+
     }
 }

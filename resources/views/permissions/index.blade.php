@@ -54,25 +54,25 @@
                       </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                      @foreach($userPermissions as $u)
+                      @foreach($permission as $p)
                       <tr>
                         <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                          {{ $u->id }}
+                          {{ $p->id }}
                         </td>
                         <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                          {{ $u->users->name }}
+                          {{ $p->users->name }}
                         </td>
                         <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                          {{ $u->permissions->name }}
+                          {{ $p->permissions->name }}
                         </td>
                         <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                          {{ \Carbon\Carbon::parse($u->created_at)->format('d/m/Y') }}
+                          {{ \Carbon\Carbon::parse($p->created_at)->format('d/m/Y') }}
                         </td>
 
                         <td class="flex flex-row gap-2 px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
 
 
-                          <a href="{{ route('permissions.edit', $u->id) }}"
+                          <a href="{{ route('permissions.edit', $p->id )}}"
                             class="text-indigo-600 hover:text-indigo-900">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                               fill="currentColor">
@@ -81,10 +81,9 @@
                             </svg>
                           </a>
 
-
-                          @if(Auth::user()->id != $u->users->id)
-                          <form name="formDelete" action="" method="post"
-                            onSubmit="return confirm('Confirma a exclusão do cliente?')">
+                          @if(Auth::user()->id != $p->users->id)
+                          <form name="formDelete" action="{{route('permissions.destroy', $p->id )}}" method="post"
+                            onSubmit="return confirm('Confirma a exclusão das permissões do usuário?')">
 
                             @csrf
                             @method('DELETE')

@@ -82,7 +82,7 @@
                   Nova senha
                 </label>
                 <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 @if($errors->has('password')) focus:outline-none border-red-500 @endif"
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
                   id="grid-password" name="password" :value="old('password')" type="password" />
 
                 @if($errors->has('password'))
@@ -101,7 +101,7 @@
                   Confirmar senha
                 </label>
                 <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 @if($errors->has('password_confirmation')) focus:outline-none border-red-500 @endif"
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
                   id="grid-street" type="password" name="password_confirmation" :value="old('password_confirmation')" />
 
                 @if($errors->has('password_confirmation'))
