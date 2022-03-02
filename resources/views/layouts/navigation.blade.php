@@ -17,6 +17,8 @@
           </x-nav-link>
         </div>
 
+        @if( App\Providers\AppServiceProvider::boot() != 0 )
+
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('books.index')"
             :active="request()->routeIs('books.index') || (\Request::is('books/*'))">
@@ -44,6 +46,9 @@
             {{ __('Multas') }}
           </x-nav-link>
         </div>
+
+        @if(App\Providers\AppServiceProvider::boot() == 1)
+
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('users.index')"
             :active="request()->routeIs('users.index') || (\Request::is('users/*'))">
@@ -58,13 +63,19 @@
           </x-nav-link>
         </div>
 
+        @endif
 
+
+        @endif
       </div>
 
-
-
       <!-- Settings Dropdown -->
-      <div class="hidden sm:flex sm:items-center sm:ml-6">
+      <div class="hidden sm:flex sm:items-center sm:ml-6 gap-2">
+        <div>
+          <img
+            class="rounded-full object-cover h-8 w-8 outline-purple-700 outline outline-offset-2 outline-2 shadow-xl shadow-lg shadow-indigo-500/50"
+            src="{{ Auth::user()->image ? Auth::user()->image : asset('images/user.png')  }}" alt="profile image" />
+        </div>
         <x-dropdown align="right" width="48">
           <x-slot name="trigger">
             <button
@@ -124,6 +135,7 @@
     <!-- Responsive Settings Options -->
     <div class="pt-4 pb-1 border-t border-gray-200">
       <div class="px-4">
+
         <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
         <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
       </div>
