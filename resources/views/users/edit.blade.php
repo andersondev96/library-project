@@ -14,7 +14,8 @@
             <h1 class="text-xl font-medium text-gray-800">Editar perfil</h1>
           </div>
 
-          <form method="POST" action="{{ route('users.update', $user->id )}}" class="py-6 px-12 w-full w-full">
+          <form method="POST" enctype="multipart/form-data" action="{{ route('users.update', $user->id )}}"
+            class="py-6 px-12 w-full w-full">
 
             @csrf
             @method('PUT')
@@ -38,8 +39,8 @@
                     transition
                     ease-in-out
                     m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="formFileSm"
-                  type="file">
+                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="image"
+                  name="image" type="file">
 
               </div>
             </div>
@@ -127,4 +128,5 @@
       </div>
     </div>
   </div>
+
 </x-app-layout>

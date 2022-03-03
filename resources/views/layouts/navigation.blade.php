@@ -74,8 +74,12 @@
         <div>
           <img
             class="rounded-full object-cover h-8 w-8 outline-purple-700 outline outline-offset-2 outline-2 shadow-xl shadow-lg shadow-indigo-500/50"
-            src="{{ Auth::user()->image ? Auth::user()->image : asset('images/user.png')  }}" alt="profile image" />
+            src="http://localhost:8000/images/uploads/{{Auth::user()->image}}" alt="profile image" />
         </div>
+
+
+
+
         <x-dropdown align="right" width="48">
           <x-slot name="trigger">
             <button

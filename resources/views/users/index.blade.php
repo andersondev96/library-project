@@ -91,7 +91,7 @@
                         {{ \Carbon\Carbon::parse($u->created_at)->format('d/m/Y') }}
                       </td>
                       <td class="flex flex-row gap-2 px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="" class="text-teal-600 hover:text-indigo-900">
+                        <a href="{{ route('users.show', $u->id) }}" class="text-teal-600 hover:text-indigo-900">
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path fill-rule="evenodd"

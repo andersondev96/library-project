@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\User_Permission;
 
+
 use Illuminate\Support\Facades\Hash;
 
 
@@ -74,9 +75,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+
+        $permissions = User_Permission::orderBy('id')->get();
+        return view('users.show', ['user' => $user, 'permissions' => $permissions]);
     }
 
     /**
@@ -116,6 +119,21 @@ class UserController extends Controller
 
             $users->name = $input['name'];
             $users->email = $input['email'];
+
+
+            if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+
+                $requestImage = $request->image;
+                $extension = $requestImage->extension();
+
+                $imgName = md5($requestImage->getClientOriginalName() . strtotime('now')) . "." . $extension;
+
+                $requestImage->move(public_path('images/uploads'), $imgName);
+
+                $users->image = $imgName;
+
+            }
 
             if (isset($input['password'])) {
 
