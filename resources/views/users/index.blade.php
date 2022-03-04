@@ -28,7 +28,7 @@
             </form>
           </div>
           <div>
-            <a href="">
+            <a href="{{ route('users.create') }}">
               <button class="bg-blue-500 h-10 hover:bg-blue-700 text-white font-bold py-2 px-4 mb-4 rounded">
                 Adicionar usuáro
               </button>

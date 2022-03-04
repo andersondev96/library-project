@@ -15,7 +15,8 @@
           <div class="flex items-center rounded justify-center vertical-column h-56 w-64">
             <img
               class="rounded-full object-cover w-48 h-48 outline-purple-700 outline outline-offset-2 outline-2 shadow-xl shadow-lg shadow-indigo-500/50"
-              src="http://localhost:8000/images/uploads/{{$user->image}}" alt="Usuário" />
+              src="http://localhost:8000/images/uploads/{{$user->image}}"
+              onError="this.src='{{asset('images/user.png')}}'" alt="Usuário" />
           </div>
           <div class="personal-infos flex-col ml-24">
             <h1 class="title font-sans text-2xl font-semibold mb-4">Informações pessoais</h1>

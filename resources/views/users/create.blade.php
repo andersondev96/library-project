@@ -14,11 +14,11 @@
             <h1 class="text-xl font-medium text-gray-800">Novo usuário</h1>
           </div>
 
-          <form method="POST" action="{{ route('register')}}" class="py-6 px-12 w-full w-full">
+          <form method="POST" action="{{ route('users.store')}}" class="py-6 px-12 w-full w-full">
 
             @csrf
             <div class="flex flex-wrap -mx-3 mb-4">
-              <div class="w-full md:w-2/6 px-3 mb-4 md:mb:0">
+              <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-name">
                   Nome
                 </label>
@@ -26,7 +26,7 @@
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite"
                   id="grid-name" name="name" :value="old('name')" required type="text" />
               </div>
-              <div class="w-full md:w-2/6 px-3 mb-4 md:mb:0">
+              <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-email">
                   E-mail
                 </label>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="flex flex-wrap -mx-3 mb-4">
-              <div class="w-full md:w-2/6 px-3 mb-4 md:mb:0">
+              <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                   Senha
                 </label>
@@ -47,7 +47,7 @@
                   id="grid-password" name="password" :value="old('password')" required type="password" />
               </div>
 
-              <div class="w-full md:w-2/6 px-3 mb-4 md:mb:0">
+              <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                   for="grid-password_confirmation">
                   Confirmar senha

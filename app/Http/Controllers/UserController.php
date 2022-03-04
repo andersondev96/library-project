@@ -9,7 +9,12 @@ use App\Models\User;
 use App\Models\User_Permission;
 
 
+use Illuminate\Validation\Rules;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use File;
+
 
 
 class UserController extends Controller
@@ -42,10 +47,6 @@ class UserController extends Controller
             session()->flash('error', 'Você não tem permissão para acessar esta página.');
             return redirect()->route('dashboard');
         }
-
-
-
-
     }
 
     /**
@@ -55,7 +56,19 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $userPermissions = User_Permission::orderBy('id')->get();
+        $userId = Auth::user()->id;
+
+        $permissionUserId = User_Permission::where('user_id', '=', $userId)->get();
+        $permissionAdministrator = $permissionUserId->where('permission_id', '=', '1');
+
+
+        if (count($permissionAdministrator) > 0) {
+            return view('users.create');
+        } else {
+            session()->flash('error', 'Você não tem permissão para acessar esta página.');
+            return redirect()->route('dashboard');
+        }
     }
 
     /**
@@ -66,7 +79,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $permission = User_Permission::create([
+            'user_id' => $user->id,
+            'permission_id' => 2,
+        ]);
+
+        event(new Registered($user));
+        $permission->save();
+
+        session()->flash('message', 'Usuário adicionado com sucesso');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -77,9 +111,20 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $userPermissions = User_Permission::orderBy('id')->get();
+        $userId = Auth::user()->id;
 
-        $permissions = User_Permission::orderBy('id')->get();
-        return view('users.show', ['user' => $user, 'permissions' => $permissions]);
+        $permissionUserId = User_Permission::where('user_id', '=', $userId)->get();
+        $permissionAdministrator = $permissionUserId->where('permission_id', '=', '1');
+
+
+        if (count($permissionAdministrator) > 0) {
+            $permissions = User_Permission::orderBy('id')->get();
+            return view('users.show', ['user' => $user, 'permissions' => $permissions]);
+        } else {
+            session()->flash('error', 'Você não tem permissão para acessar esta página.');
+            return redirect()->route('dashboard');
+        }
     }
 
     /**
@@ -91,6 +136,7 @@ class UserController extends Controller
     public function edit( User $user)
     {
         return view('users.edit', ['user' => $user]);
+
     }
 
     /**
@@ -124,12 +170,16 @@ class UserController extends Controller
             if($request->hasFile('image') && $request->file('image')->isValid()) {
 
 
+                if (isset($users->image)) {
+                   File::delete(public_path('/images' . '/' . 'uploads' . '/' .$users->image ));
+                }
+
                 $requestImage = $request->image;
                 $extension = $requestImage->extension();
 
                 $imgName = md5($requestImage->getClientOriginalName() . strtotime('now')) . "." . $extension;
 
-                $requestImage->move(public_path('images/uploads'), $imgName);
+                $name = $requestImage->move(public_path('images/uploads'), $imgName);
 
                 $users->image = $imgName;
 
@@ -148,13 +198,10 @@ class UserController extends Controller
 
             $users->save();
 
-
             session()->flash('message', 'Usuário atualizado com sucesso.');
             return redirect()->route('users.index');
 
         }
-
-
     }
 
     /**
@@ -166,6 +213,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+
+        if (isset($user->image)) {
+
+            File::delete(public_path('/images' . '/' . 'uploads' . '/' .$user->image ));
+         }
+
         $user->delete();
 
         session()->flash('message', 'Usuário excluído com sucesso');

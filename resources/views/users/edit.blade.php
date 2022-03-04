@@ -25,23 +25,7 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                   Avatar
                 </label>
-                <input class="form-control
-                    block
-                    w-full
-                    px-2
-                    py-1
-                    text-sm
-                    font-normal
-                    text-gray-700
-                    bg-white bg-clip-padding
-                    border border-solid border-gray-300
-                    rounded
-                    transition
-                    ease-in-out
-                    m-0
-                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" id="image"
-                  name="image" type="file">
-
+                <input class="form-control" id="image" name="image" type="file" accept="image/*">
               </div>
             </div>
 
