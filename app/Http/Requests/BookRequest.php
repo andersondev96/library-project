@@ -24,7 +24,7 @@ class BookRequest extends FormRequest
     public function rules()
     {
         return [
-            'isbn' => 'required',
+            'isbn' => 'required|size:14',
             'title' => 'required',
             'author' => 'required',
             'publishing_company' => 'required',
@@ -40,15 +40,16 @@ class BookRequest extends FormRequest
 {
     return [
         'isbn.required' => 'O ISBN é obrigatório',
+        'isbn.size' => 'O ISBN deve possuir exatamente 14 caracteres',
         'title.required' => 'O título é obrigatório',
         'author.required' => 'O nome do autor é obrigatório',
         'publishing_company.required' => 'O nome da editora é obrigatório',
         'publication_place.required' => 'O local de lançamento é obrigatório',
-        'publication_date.required' => 'A data de publicação é obrigatória',
+        'publication_date.required' => 'A data de lançamento é obrigatória',
         'publisher_number.required' => 'O número da edição é obrigatório',
         'publisher_number.numeric' => 'O número da edição deve ser um valor inteiro',
         'available_quantity.required' => 'A quantidade de exemplares é obrigatório',
-        'available_quantity.numetic' => 'A quantidade de exemplares deve ser um valor inteiro',
+        'available_quantity.numeric' => 'A quantidade de exemplares deve ser um valor inteiro',
     ];
 }
 }

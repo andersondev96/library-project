@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\State;
 use App\Models\Address;
+use App\Models\Loan;
 use Illuminate\Http\Request;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\ClientRequest;
@@ -37,7 +38,9 @@ class ClientController extends Controller
     public function create()
     {
         $states = State::orderBy('initials')->get();
-        return view('clients.create', ['states' => $states]);
+        $types = ['Aluno', 'Professor', 'Funcionário', 'Comunidade'];
+        $departments = ['DCEX', 'DCHM', 'DCNN', 'DCBL', 'DCTL', 'Não se aplica'];
+        return view('clients.create', ['states' => $states, 'types' => $types, 'departments' => $departments]);
 
 
     }
@@ -48,17 +51,17 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store( AddressRequest $addressRequest, ClientRequest $clientRequest)
+    public function store( ClientRequest $clientRequest)
     {
         try {
-            $address = Address::create($addressRequest->all());
+            $address = Address::create($clientRequest->all());
             $client = new Client($clientRequest->all());
             $client->address_id = $address->id;
             $client->save();
-            return redirect()->route('clients.index');
             session()->flash('message', 'Cliente adicionado com sucesso');
-        } catch (\Exception $e) {
-            echo($e);
+            return redirect()->route('clients.index');
+        } catch (Exception $e) {
+            session()->flash('error', 'Erro ao realizar o cadastro.');
         }
     }
 
@@ -113,12 +116,18 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
-        $id = $client->address_id;
-        $address = Address::find($id);
-        $address->delete();
+        $loan = Loan::where('client_id', '=', $client->id)->get();
+        if (count($loan) > 0) {
+            session()->flash('error', 'Não é possível excluir o cliente. Há empréstimos associados a ele.');
+        } else {
+            $id = $client->address_id;
+            $address = Address::find($id);
+            $address->delete();
+            $client->delete();
+            session()->flash('message', 'Cliente excluído com sucesso');
+        }
 
         return redirect()->route('clients.index');
-        session()->flash('message', 'Cliente excluído com sucesso');
 
     }
 }

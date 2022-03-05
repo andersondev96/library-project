@@ -22,9 +22,9 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-cpf">
                   CPF
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite"
-                  id="grid-cpf" name="cpf" :value="old('cpf')" required type="text" placeholder="XXX.XXX.XXX-XX" />
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite {{$errors->has('cpf') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-cpf" name="cpf" value="{{old('cpf')}}" type="text" placeholder="XXX.XXX.XXX-XX" />
                 @if($errors->has('cpf'))
                 <div class="text-red-500 text-sm">
                   @foreach($errors->get('cpf') as $error)
@@ -37,9 +37,9 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-rg">
                   RG
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-rg" name="rg" :value="old('rg')" required type="text" placeholder="XX.XXX.XXX" />
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('rg') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-rg" name="rg" value="{{old('rg')}}" type="text" placeholder="XX.XXX.XXX" />
                 @if($errors->has('rg'))
                 <div class="text-red-500 text-sm">
                   @foreach($errors->get('rg') as $error)
@@ -52,9 +52,9 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-name">
                   Nome
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-name" name="name" :value="old('name')" required type="text"
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('name') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-name" name="name" value="{{old('name')}}" type="text"
                   placeholder="Digite o nome do cliente" />
 
                 @if($errors->has('name'))
@@ -72,9 +72,9 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-birth_date">
                   Data de nascimento
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-birth_date" name="birth_date" :value="old('birth_date')" required type="date" />
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('birth_date') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-birth_date" name="birth_date" value="{{old('birth_date')}}" type="date" />
 
                 @if($errors->has('birth_date'))
                 <div class="text-red-500 text-sm">
@@ -88,9 +88,9 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-street">
                   Rua
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-street" type="text" name="street" :value="old('street')" required
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('street') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-street" type="text" name="street" value="{{old('street')}}"
                   placeholder="Digite o nome da rua" />
 
                 @if($errors->has('street'))
@@ -106,10 +106,9 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-number">
                   Número
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-number" name="number" :value="old('number')" required type="text"
-                  placeholder="Digite o número" />
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('number') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-number" name="number" value="{{old('number')}}" type="text" placeholder="Digite o número" />
 
                 @if($errors->has('number'))
                 <div class="text-red-500 text-sm">
@@ -126,9 +125,9 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-complement">
                   Complemento
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-complement" name="complement" :value="old('complement')" type="text"
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('complement') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-complement" name="complement" value="{{old('complement')}}" type="text"
                   placeholder="Bloco/Apartamento" />
 
                 @if($errors->has('complement'))
@@ -143,9 +142,9 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-district">
                   Bairro
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-district" type="text" name="district" :value="old('district')" required
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('district') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-district" type="text" name="district" value="{{old('district')}}"
                   placeholder="Digite o bairro" />
 
                 @if($errors->has('district'))
@@ -161,10 +160,9 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip_code">
                   CEP
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-zip_code" name="zip_code" :value="old('zip_code')" required type="text"
-                  placeholder="XX.XXX-XXX" />
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('zip_code') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-zip_code" name="zip_code" value="{{old('zip_code')}}" type="text" placeholder="XX.XXX-XXX" />
 
                 @if($errors->has('zip_code'))
                 <div class="text-red-500 text-sm">
@@ -181,9 +179,9 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-complement">
                   Cidade
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-city" name="city" type="text" :value="old('city')" required placeholder="Digite a cidade" />
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('city') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-city" name="city" type="text" value="{{old('city')}}" placeholder="Digite a cidade" />
 
                 @if($errors->has('city'))
                 <div class="text-red-500 text-sm">
@@ -198,11 +196,12 @@
                   Estado
                 </label>
                 <select
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('state_id') ? 'focus:outline-none border-red-500' : ''}}"
                   id="grid-state_id" type="text" name="state_id">
 
                   @foreach($states as $e)
-                  <option value="{{ $e->id }}">{{  $e->initials }}</option>
+                  <option @if(old('state_id')==$e->id) {{'selected="selected"'}} @endif
+                    value="{{ $e->id }}">{{  $e->initials }}</option>
                   @endforeach
                 </select>
 
@@ -219,10 +218,9 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-email">
                   E-mail
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-email" name="email" :value="old('email')" required type="email"
-                  placeholder="Digite o e-mail" />
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('email') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-email" name="email" value="{{old('email')}}" type="text" placeholder="Digite o e-mail" />
 
                 @if($errors->has('email'))
                 <div class="text-red-500 text-sm">
@@ -239,10 +237,11 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-telephone">
                   Telefone
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-telephone" name="telephone" :value="old('telephone')" required type="text"
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('telephone') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-telephone" name="telephone" value="{{old('telephone')}}" type="text"
                   placeholder="(XX)XXXXX-XXXX" />
+
 
                 @if($errors->has('telephone'))
                 <div class="text-red-500 text-sm">
@@ -257,13 +256,13 @@
                   Tipo de cliente
                 </label>
                 <select
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-type" name="type" :value="old('type')">
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('type') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-type" name="type">
 
                   <option value="NULL" disabled selected>Selecione uma opção</option>
-                  <option value="Aluno">Aluno</option>
-                  <option value="Professor">Professor</option>
-                  <option value="Funcionário">Funcionário</option>
+                  @foreach($types as $t)
+                  <option @if(old('type')==$t) {{'selected="selected"'}} @endif value="{{$t}}">{{$t}}</option>
+                  @endforeach
                 </select>
 
                 @if($errors->has('type'))
@@ -280,15 +279,12 @@
                   Departamento
                 </label>
                 <select
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-department" name="department" :value="old('department')">
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('department') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-department" name="department">
                   <option value="NULL" disabled selected>Selecione uma opção</option>
-                  <option value="DCEX">DCEX</option>
-                  <option value="DCHM">DCHM</option>
-                  <option value="DCNN">DCNN</option>
-                  <option value="DCBL">DCBL</option>
-                  <option value="DCTL">DCTL</option>
-                  <option value="Não se aplica">Não se aplica</option>
+                  @foreach($departments as $d)
+                  <option @if(old('department')==$d) {{'selected="selected"'}} @endif value="{{$d}}">{{$d}}</option>
+                  @endforeach
                 </select>
 
                 @if($errors->has('department'))

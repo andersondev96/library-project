@@ -5,7 +5,7 @@
     </h2>
   </x-slot>
   <div class="py-12">
-      <x-back/>
+    <x-back />
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="bg-white border-b border-gray-200 h-60 w-full h-full">
@@ -22,8 +22,9 @@
                   isbn
                 </label>
                 <input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 @if($errors->has('isbn')) focus:outline-none border-red-500 @endif"
-                  id="grid-isbn" name="isbn" type="text" placeholder="Digite o ISBN do livro" />
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('isbn') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-isbn" name="isbn" type="text" value="{{old('isbn')}}" placeholder="Digite o ISBN do livro" />
+
                 @if($errors->has('isbn'))
                 <div class="text-red-500 text-sm">
                   @foreach($errors->get('isbn') as $error)
@@ -37,8 +38,9 @@
                   Título
                 </label>
                 <input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 @if($errors->has('title')) focus:outline-none border-red-500 @endif"
-                  id="grid-title" name="title" type="text" placeholder="Digite o título do livro" />
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('title') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-title" name="title" type="text" value="{{old('title')}}"
+                  placeholder="Digite o título do livro" />
 
                 @if($errors->has('title'))
                 <div class="text-red-500 text-sm">
@@ -57,8 +59,9 @@
                   Autor
                 </label>
                 <input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 @if($errors->has('author')) focus:outline-none border-red-500 @endif"
-                  id="grid-author" type="text" name="author" placeholder="Digite o nome do autor" />
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('author') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-author" type="text" name="author" value="{{old('author')}}"
+                  placeholder="Digite o nome do autor" />
 
                 @if($errors->has('author'))
                 <div class="text-red-500 text-sm">
@@ -74,8 +77,9 @@
                   Editora
                 </label>
                 <input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 @if($errors->has('publishing_company')) focus:outline-none border-red-500 @endif"
-                  id="grid-publishing" name="publishing_company" type="text" placeholder="Digite o nome da editora" />
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('publishing_company') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-publishing" name="publishing_company" type="text" value="{{old('publishing_company')}}"
+                  placeholder="Digite o nome da editora" />
 
                 @if($errors->has('publishing_company'))
                 <div class="text-red-500 text-sm">
@@ -92,8 +96,8 @@
                   Local de lançamento
                 </label>
                 <input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 @if($errors->has('publication_place')) focus:outline-none border-red-500 @endif"
-                  id="grid-publishing_place" name="publication_place" type="text"
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('publication_place') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-publishing_place" name="publication_place" value="{{old('publication_place')}}" type="text"
                   placeholder="Digite onde o livro foi lançado" />
 
                 @if($errors->has('publication_place'))
@@ -113,8 +117,8 @@
                   Data de lançamento
                 </label>
                 <input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 @if($errors->has('publication_date')) focus:outline-none border-red-500 @endif"
-                  id="grid-publication_date" name="publication_date" type="date" />
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('publication_date') ? 'focus:outline-none border-red-500' : '' }}"
+                  id="grid-publication_date" name="publication_date" value="{{old('publication_date')}}" type="date" />
 
                 @if($errors->has('publication_date'))
                 <div class="text-red-500 text-sm">
@@ -131,8 +135,8 @@
                   Número da edição
                 </label>
                 <input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 @if($errors->has('publisher_number')) focus:outline-none border-red-500 @endif"
-                  id="grid-publisher_number" name="publisher_number" type="text"
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('publisher_number') ?  'focus:outline-none border-red-500' : ''}}"
+                  id="grid-publisher_number" name="publisher_number" value="{{old('publisher_number')}}" type="text"
                   placeholder="Digite o número da edição" />
 
                 @if($errors->has('publisher_number'))
@@ -150,9 +154,9 @@
                   Quantidade de exemplares
                 </label>
                 <input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 @if($errors->has('available_quantity')) focus:outline-none border-red-500 @endif"
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('available_quantity')? 'focus:outline-none border-red-500' : ''}}"
                   id="grid-available_quantity" name="available_quantity" type="text"
-                  placeholder="Digite a quantidade de exemplares" />
+                  value="{{old('available_quantity')}}" placeholder="Digite a quantidade de exemplares" />
 
                 @if($errors->has('available_quantity'))
                 <div class="text-red-500 text-sm">
@@ -174,6 +178,7 @@
           </form>
         </div>
       </div>
+
     </div>
   </div>
 </x-app-layout>

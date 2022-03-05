@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Http\Requests\BookRequest;
+use App\Models\Loan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -95,8 +96,16 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        $book->delete();
-        session()->flash('message', 'Livro excluido com sucesso');
+        $loan = Loan::where('books_id', '=', $book->id)->get();
+        if (count($loan) > 0 ) {
+            session()->flash('error', 'Não é possível excluir o livro. Há empréstimos associados a ele.');
+        } else {
+            $book->delete();
+            session()->flash('message', 'Livro excluido com sucesso');
+        }
+
         return redirect()->route('books.index');
+
+
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use App\Helpers\Helper;
 
 use App\Models\User_Permission;
 use App\Models\User;
@@ -18,14 +19,9 @@ class UserPermissionController extends Controller
      */
     public function index()
     {
-        $permission = User_Permission::orderBy('id')->get();
-        $userId = Auth::user()->id;
 
-       $permissionUserId = User_Permission::where('user_id', '=', $userId)->get();
-       $permissionAdministrator = $permissionUserId->where('permission_id', '=', '1');
-
-
-        if (count($permissionAdministrator) > 0) {
+        if (Helper::isAdministrator()) {
+            $permission = User_Permission::orderBy('id')->get();
             return view('permissions.index', [ 'permission' => $permission ]);
         } else {
             session()->flash('error', 'Você não tem permissão para acessar esta página.');
@@ -40,10 +36,16 @@ class UserPermissionController extends Controller
      */
     public function create()
     {
-        $users = User::orderBy('id')->get();
-        $permissions = Permission::orderBy('id')->get();
+        if (Helper::isAdministrator()) {
+            $users = User::orderBy('id')->get();
+            $permissions = Permission::orderBy('id')->get();
 
-        return view('permissions.create', ['users' => $users, 'permissions' => $permissions]);
+            return view('permissions.create', ['users' => $users, 'permissions' => $permissions]);
+
+        } else {
+            session()->flash('error', 'Você não tem permissão para acessar esta página.');
+            return redirect()->route('dashboard');
+        }
     }
 
     /**
@@ -85,10 +87,15 @@ class UserPermissionController extends Controller
      */
     public function edit(User_Permission $permission)
     {
-        $users = User::orderBy('id')->get();
-        $permissions = Permission::orderBy('id')->get();
+        if (Helper::isAdministrator()) {
+            $users = User::orderBy('id')->get();
+            $permissions = Permission::orderBy('id')->get();
+            return view('permissions.edit', ['permission' => $permission, 'users' => $users, 'permissions' => $permissions]);
+        }else {
+            session()->flash('error', 'Você não tem permissão para acessar esta página.');
+            return redirect()->route('dashboard');
+        }
 
-         return view('permissions.edit', ['permission' => $permission, 'users' => $users, 'permissions' => $permissions]);
     }
 
     /**

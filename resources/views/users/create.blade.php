@@ -22,17 +22,34 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-name">
                   Nome
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite"
-                  id="grid-name" name="name" :value="old('name')" required type="text" />
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite {{$errors->has('name') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-name" name="name" value="{{old('name')}}" type="text" />
+
+                @if($errors->has('name'))
+                <div class="text-red-500 text-sm">
+                  @foreach($errors->get('name') as $error)
+                  {{ $error }}
+                  @endforeach
+                </div>
+                @endif
+
               </div>
               <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-email">
                   E-mail
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-email" name="email" :value="old('email')" required type="email" />
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('email') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-email" name="email" value="{{old('email')}}" type="text" />
+
+                @if($errors->has('email'))
+                <div class="text-red-500 text-sm">
+                  @foreach($errors->get('email') as $error)
+                  {{ $error }}
+                  @endforeach
+                </div>
+                @endif
 
               </div>
             </div>
@@ -42,9 +59,18 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                   Senha
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-password" name="password" :value="old('password')" required type="password" />
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('password') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-password" name="password" value="{{old('password')}}" type="password" />
+
+                @if($errors->has('password'))
+                <div class="text-red-500 text-sm">
+                  @foreach($errors->get('password') as $error)
+                  {{ $error }}
+                  @endforeach
+                </div>
+                @endif
+
               </div>
 
               <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
@@ -52,10 +78,19 @@
                   for="grid-password_confirmation">
                   Confirmar senha
                 </label>
-                <x-input
-                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-street" type="password" name="password_confirmation" :value="old('password_confirmation')"
-                  required />
+                <input
+                  class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('password_confirmation') ? 'focus:outline-none border-red-500' : ''}}"
+                  id="grid-street" type="password" name="password_confirmation"
+                  value="{{old('password_confirmation')}}" />
+
+                @if($errors->has('password_confirmation'))
+                <div class="text-red-500 text-sm">
+                  @foreach($errors->get('password_confirmation') as $error)
+                  {{ $error }}
+                  @endforeach
+                </div>
+                @endif
+
               </div>
             </div>
 

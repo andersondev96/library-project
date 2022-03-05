@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\User_Permission;
+use App\Helpers\Helper;
+use App\Http\Requests\UserRequest;
 
 
 use Illuminate\Validation\Rules;
@@ -19,30 +21,26 @@ use File;
 
 class UserController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request)
     {
-        $userPermissions = User_Permission::orderBy('id')->get();
-        $userId = Auth::user()->id;
 
-        $permissionUserId = User_Permission::where('user_id', '=', $userId)->get();
-        $permissionAdministrator = $permissionUserId->where('permission_id', '=', '1');
-
-
-        if (count($permissionAdministrator) > 0) {
+        if (Helper::isAdministrator()) {
             $users = User::orderBy('id');
 
-        if ($request->name) {
-            $users->where('name', 'like', "%$request->name%");
-        }
+            if ($request->name) {
+                $users->where('name', 'like', "%$request->name%");
+            }
 
-        $users = $users->simplePaginate(10);
+            $users = $users->simplePaginate(10);
 
-        return view('users.index', ['users' => $users]);
+            return view('users.index', ['users' => $users]);
         } else {
             session()->flash('error', 'Você não tem permissão para acessar esta página.');
             return redirect()->route('dashboard');
@@ -56,14 +54,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $userPermissions = User_Permission::orderBy('id')->get();
-        $userId = Auth::user()->id;
-
-        $permissionUserId = User_Permission::where('user_id', '=', $userId)->get();
-        $permissionAdministrator = $permissionUserId->where('permission_id', '=', '1');
-
-
-        if (count($permissionAdministrator) > 0) {
+        if (Helper::isAdministrator()) {
             return view('users.create');
         } else {
             session()->flash('error', 'Você não tem permissão para acessar esta página.');
@@ -77,13 +68,8 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
 
         $user = User::create([
             'name' => $request->name,
@@ -111,14 +97,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $userPermissions = User_Permission::orderBy('id')->get();
-        $userId = Auth::user()->id;
-
-        $permissionUserId = User_Permission::where('user_id', '=', $userId)->get();
-        $permissionAdministrator = $permissionUserId->where('permission_id', '=', '1');
-
-
-        if (count($permissionAdministrator) > 0) {
+        if (Helper::isAdministrator()) {
             $permissions = User_Permission::orderBy('id')->get();
             return view('users.show', ['user' => $user, 'permissions' => $permissions]);
         } else {
@@ -133,10 +112,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit( User $user)
+    public function edit(User $user)
     {
-        return view('users.edit', ['user' => $user]);
 
+        if (Helper::isAdministrator() || Auth::user()->id == $user->id) {
+            return view('users.edit', ['user' => $user]);
+        } else {
+            session()->flash('error', 'Você não tem permissão para acessar esta página.');
+            return view('dashboard');
+        }
     }
 
     /**
@@ -152,11 +136,10 @@ class UserController extends Controller
 
         $users = User::find($id);
 
-        if (! Hash::check($input['actual_password'], Auth::user()->password)) {
+        if (!Hash::check($input['actual_password'], Auth::user()->password)) {
             session()->flash('error', 'Erro ao atualizar usuário.');
             return redirect()->route('users.index');
-        }
-        else {
+        } else {
             $validation = $request->validate([
                 'name' => 'required',
                 'email' => 'required|email',
@@ -167,11 +150,11 @@ class UserController extends Controller
             $users->email = $input['email'];
 
 
-            if($request->hasFile('image') && $request->file('image')->isValid()) {
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
 
 
                 if (isset($users->image)) {
-                   File::delete(public_path('/images' . '/' . 'uploads' . '/' .$users->image ));
+                    File::delete(public_path('/images' . '/' . 'uploads' . '/' . $users->image));
                 }
 
                 $requestImage = $request->image;
@@ -182,7 +165,6 @@ class UserController extends Controller
                 $name = $requestImage->move(public_path('images/uploads'), $imgName);
 
                 $users->image = $imgName;
-
             }
 
             if (isset($input['password'])) {
@@ -200,7 +182,6 @@ class UserController extends Controller
 
             session()->flash('message', 'Usuário atualizado com sucesso.');
             return redirect()->route('users.index');
-
         }
     }
 
@@ -216,8 +197,8 @@ class UserController extends Controller
 
         if (isset($user->image)) {
 
-            File::delete(public_path('/images' . '/' . 'uploads' . '/' .$user->image ));
-         }
+            File::delete(public_path('/images' . '/' . 'uploads' . '/' . $user->image));
+        }
 
         $user->delete();
 
