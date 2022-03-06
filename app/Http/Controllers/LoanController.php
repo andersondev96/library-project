@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Loan;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoanRequest;
 use App\Models\Client;
 use App\Models\Book;
 use App\Models\User;
@@ -19,7 +20,7 @@ class LoanController extends Controller
      */
     public function index(Request $request)
     {
-        $loans = Loan::orderBy('return_date', 'ASC')->orderBy('loan_date', 'ASC');
+        $loans = Loan::orderBy('return_date', 'ASC')->orderBy('loan_date', 'DESC');
 
         $loans = $loans
                 ->join('books', 'books.id', '=', 'loans.books_id')
@@ -60,7 +61,7 @@ class LoanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, User $user)
+    public function store(LoanRequest $request, User $user)
     {
 
         $client = Client::find($request->client_id);

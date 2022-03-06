@@ -19,6 +19,7 @@
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/flowbite@1.3.4/dist/datepicker.js"></script>
 
 </head>
 
@@ -35,9 +36,9 @@
 
     @if(session('message'))
 
-    <div class="flex w-full items-center justify-end mt-4">
+    <div class="absolute flex w-full items-center justify-end mt-4">
       <div id="toast-success"
-        class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+        class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white opacity-90 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
         role="alert">
         <div
           class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
@@ -64,9 +65,9 @@
     @endif
 
     @if(session('error'))
-    <div class="flex w-full items-center justify-end mt-4">
+    <div class="absolute flex w-full items-center justify-end mt-4">
       <div id="toast-error"
-        class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+        class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white opacity-90 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
         role="alert">
         <div
           class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
