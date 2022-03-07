@@ -34,17 +34,34 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-name">
                   Nome
                 </label>
-                <x-input
+                <input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite"
-                  id="grid-name" name="name" value="{{ $user->name }}" required type="text" />
+                  id="grid-name" name="name" value="{{ $user->name }}" type="text" />
+
+                @if($errors->has('name'))
+                <div class="text-red-500 text-sm">
+                  @foreach($errors->get('name') as $error)
+                  {{ $error }}
+                  @endforeach
+                </div>
+                @endif
+
               </div>
               <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-email">
                   E-mail
                 </label>
-                <x-input
+                <input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-email" name="email" value="{{$user->email}}" required type="email" />
+                  id="grid-email" name="email" value="{{$user->email}}" type="email" />
+
+                @if($errors->has('email'))
+                <div class="text-red-500 text-sm">
+                  @foreach($errors->get('email') as $error)
+                  {{ $error }}
+                  @endforeach
+                </div>
+                @endif
 
               </div>
             </div>
@@ -57,8 +74,8 @@
                 </label>
                 <x-input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-actual_password" name="actual_password" :value="old('actual_password')" required
-                  type="password" />
+                  id="grid-actual_password" name="actual_password" :value="old('actual_password')" type="password" />
+
 
               </div>
 
@@ -66,7 +83,7 @@
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                   Nova senha
                 </label>
-                <x-input
+                <input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
                   id="grid-password" name="password" :value="old('password')" type="password" />
 

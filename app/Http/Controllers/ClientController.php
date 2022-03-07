@@ -97,6 +97,7 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
+
         $address = Address::find($client->address_id);
         $address->fill($request->all());
         $address->save();

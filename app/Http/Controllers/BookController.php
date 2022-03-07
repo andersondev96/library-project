@@ -82,9 +82,13 @@ class BookController extends Controller
      */
     public function update(BookRequest $request, Book $book)
     {
+        if ($request->available_quantity > $book->borrowed_amounts + 1) {
         $book->fill($request->all());
         $book->save();
         session()->flash('message', 'Livro atualizado com sucesso');
+        } else {
+            session()->flash('error', 'Quantidade de exemplares inválida. Insira uma valor maior do que ' .($book->borrowed_amounts + 1) );
+        }
         return redirect()->route('books.index');
     }
 
