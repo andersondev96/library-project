@@ -127,7 +127,7 @@
                         clip-rule="evenodd"></path>
                     </svg>
                   </div>
-                  <input datepicker datepicker-autohide type="text" datepicker-format="dd/mm/yyyy"
+                  <input datepicker datepicker-autohide type="text" datepicker-format="yyyy-mm-dd"
                     class="pl-10 p-2.5 appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500 {{$errors->has('publication_date') ? 'focus:outline-none border-red-500' : ''}}"
                     id="grid-publication_date" name="publication_date" value="{{old('publication_date')}}"
                     placeholder="Selecione a data">
