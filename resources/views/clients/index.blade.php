@@ -93,7 +93,7 @@
                         {{ \Carbon\Carbon::parse($c->birth_date)->format('d/m/Y') }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light 'whitespace-no-wrap'">
-                        {{ strlen($c->email) > 30 ? substr($c->email, 0, 30) . "..." : $c->email }}
+                        {{ strlen($c->email) > 24 ? substr($c->email, 0, 24) . "..." : $c->email }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light 'whitespace-no-wrap'">
                         {{ $c->telephone }}

@@ -72,9 +72,10 @@
                   for="grid-atual_password">
                   Senha atual
                 </label>
-                <x-input
+                <input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-actual_password" name="actual_password" :value="old('actual_password')" type="password" />
+                  id="grid-actual_password" name="actual_password" value="{{old('actual_password')}}" type="password"
+                  required />
 
 
               </div>
@@ -85,7 +86,7 @@
                 </label>
                 <input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-password" name="password" :value="old('password')" type="password" />
+                  id="grid-password" name="password" value="{{old('password')}}" type="password" />
 
                 @if($errors->has('password'))
                 <div class="text-red-500 text-sm">
@@ -102,9 +103,10 @@
                   for="grid-password_confirmation">
                   Confirmar senha
                 </label>
-                <x-input
+                <input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-street" type="password" name="password_confirmation" :value="old('password_confirmation')" />
+                  id="grid-street" type="password" name="password_confirmation"
+                  value="{{old('password_confirmation')}}" />
 
                 @if($errors->has('password_confirmation'))
                 <div class="text-red-500 text-sm">
@@ -129,5 +131,6 @@
       </div>
     </div>
   </div>
+
 
 </x-app-layout>

@@ -95,7 +95,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(UserRequest $user)
+    public function show(User $user)
     {
         if (Helper::isAdministrator()) {
             $permissions = User_Permission::orderBy('id')->get();

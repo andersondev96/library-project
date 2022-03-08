@@ -25,29 +25,35 @@
                   Livro
                 </label>
 
-                <select
+                <input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite"
-                  id="grid-books_id" name="books_id">
+                  id="grid-books_id" name="books_id" value="{{ $loan->books->id }}" list="books">
+
+                <datalist id="books">
                   @foreach($books as $b)
-                  <option value="{{ $b->id }}" @if ($b->id == $loan->books->id) selected @endif>
-                    {{ strlen($b->title) > 68 ? substr($b->title, 0, 68) . '...' : $b->title }}</option>
+                  <option value="{{ $b->id }}">
+                    {{ $b->title }}
+                  </option>
                   @endforeach
-                </select>
+                </datalist>
+
 
               </div>
               <div class="w-full md:w-3/6 px-3 mb-4 md:mb:0">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-client_id">
                   Cliente
                 </label>
-                <select
+                <input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-whrite focus:border-gray-500"
-                  id="grid-client_id" name="client_id">
+                  id="grid-client_id" name="client_id" value="{{ $loan->client->id }}" list="clients">
 
+                <datalist id="clients">
                   @foreach($clients as $c)
-                  <option value="{{ $c->id }}" @if ($c->id == $loan->client->id) selected @endif>
+                  <option value="{{ $c->id }}">
                     {{ $c->name }}
                   </option>
                   @endforeach
+                </datalist>
 
                 </select>
               </div>
