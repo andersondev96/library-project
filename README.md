@@ -2,37 +2,39 @@
 style="display: flex; 
 flex-direction: row;
 gap: 10px">
-<img src="banner-1.png">
-<img src="banner-2.png">
+<img src="banner-1.png" width="500px">
+<img src="banner-2.png" width="500px">
 </div>
 
 <br>
-<img src="https://img.shields.io/github/languages/count/andersondev96/library-project?style=for-the-badge">
-<img src="https://img.shields.io/github/repo-size/andersondev96/library-project?style=for-the-badge">
-<img src="https://img.shields.io/github/last-commit/andersondev96/library-project?color=blue&style=for-the-badge">
-<br><br>
+<div align="center" style="display: flex; flex-direction: row">
+   <img src="https://img.shields.io/github/languages/count/andersondev96/library-project?style=for-the-badge">
+    <img src="https://img.shields.io/github/repo-size/andersondev96/library-project?style=for-the-badge">
+    <img src="https://img.shields.io/github/last-commit/andersondev96/library-project?color=blue&style=for-the-badge">
+</div>
+<br>
 
 <h1> Sistema de gerenciamento para biblioteca 📚</h1>
 <b> Índice </b>
 <div>
 <ul>
-<li><a href="#-Sobre-o-Projeto">Sobre o projeto</a></li>
-<li><a href="#-Funcionalidades">Funcionalidades</a></li>
-<li><a href="#-Features">Features</a></li>
-<li><a href="#-Tecnologias">Tecnologias</a></li>
-<li><a href="#-Como-executar-a-aplicação">Como executar a aplicação</a></li>
-<li><a href="#-Como-Contribuir">Como contribuir</a></li>
-<li><a href="#-Autor">Autor</a></li>
-<li><a href="#-Licença">Licença</a></li>
+<li><a href="#-sobre-o-projeto">Sobre o projeto</a></li>
+<li><a href="#-funcionalidades">Funcionalidades</a></li>
+<li><a href="#-features">Features</a></li>
+<li><a href="#-tecnologias">Tecnologias</a></li>
+<li><a href="#-como-executar-a-aplicação">Como executar a aplicação</a></li>
+<li><a href="#-como-contribuir">Como contribuir</a></li>
+<li><a href="#-autor">Autor</a></li>
+<li><a href="#-licença">Licença</a></li>
 </ul>
 <div>
 <div>
 <h2>📄 Sobre o projeto</h2>
-<b>Status: Em construção 🚧 </b>
-<p> A aplicação desenvolvida consiste em um sistema de gerenciamento para bibliotecas, possibilitando o usuário realizar as principais atividades necessárias em uma biblioteca, como cadastrar livros e clientes e realizar os empréstimos.</p><br>
+<b>Status: Em construção 🚧 </b><br><br>
+<p> A aplicação desenvolvida consiste em um sistema de gerenciamento para bibliotecas, possibilitando o usuário realizar as principais atividades necessárias em uma biblioteca, como cadastrar livros e clientes e realizar os empréstimos.</p>
 </div>
 <div>
-<h2> 🔧 Funcionalidades</h2>
+<h2>🔧 Funcionalidades</h2>
 <ul>
 <b>Usuários</b>
 <li>Cadastrar usuário</li>
@@ -88,7 +90,7 @@ gap: 10px">
 <br>
 </div>
 <div>
-<h2>🧑‍💻 Tecnologias utilizadas</h2>
+<h2>🧑‍💻 Tecnologias</h2>
 <a href="https://www.php.net/manual/en/">
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" height="64" />
 </a>
@@ -104,7 +106,7 @@ gap: 10px">
 <br></br>
 </div>
 <div>
-<h2>🚀Como executar a aplicação</h2>
+<h2>🚀 Como executar a aplicação</h2>
 <b>Pré-requisitos</b>
 <p>Antes de começar, você deve ter instalado em sua máquina, as seguintes ferramentas: <a href="https://git-scm.com/">Git</a>, <a href="https://www.php.net/downloads.php">PHP</a> (de preferência a versão 7.4), <a href="https://getcomposer.org/download/">Composer</a>, <a href="https://www.mysql.com/downloads/">MySQL</a> e também um editor, para trabalhar com o código, como o <a href="https://code.visualstudio.com/">VSCode</a>.
 <br><br>
@@ -133,7 +135,7 @@ DB_PASSWORD=<password>
 4. Rode a aplicação na porta **http://localhost:8000**.
 
 <br>
-<h2> 🤝 Como contribuir</h2>
+<h2>🤝 Como contribuir</h2>
 <ol>
     <li>Faça um fork do repositório.</li>
     <li>Crie uma nova branch com as suas alterações: <code>git checkout -b my-feature</code>.</li>
@@ -141,7 +143,7 @@ DB_PASSWORD=<password>
     <li>Envie as suas alterações:<code>git push origin my-feature</code>.</li>
 </ol>
 <br>
-<h2> 👥 Autor </h2>
+<h2>👥 Autor</h2>
 <a href="https://www.linkedin.com/in/anderson-fernandes96/">
     <div style="display: flex; flex-direction: column; align-items: center; gap: 10px">
     <img src="https://avatars.githubusercontent.com/u/49786548?v=4" width="64" style="border: 2px solid blue; border-radius: 50px" />
@@ -156,8 +158,8 @@ DB_PASSWORD=<password>
 
 </a>
 <br>
-<h2>📝Licença</h2>
-<p>Este projeto está sobre a licença MIT.
+<h2>📝 Licença</h2>
+    <p>Este projeto está sobre a licença <a href="LICENSE">MIT</a>.
 
 Feito com 💚 por Anderson Fernandes 👋 
 <a href="https://www.linkedin.com/in/anderson-fernandes96/">Entre em contato!</a>
