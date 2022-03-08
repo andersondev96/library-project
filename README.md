@@ -1,66 +1,171 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<div 
+style="display: flex; 
+flex-direction: row;
+gap: 10px">
+<img src="banner-1.png">
+<img src="banner-2.png">
+</div>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<br>
+<img src="https://img.shields.io/github/languages/count/andersondev96/library-project?style=for-the-badge">
+<img src="https://img.shields.io/github/repo-size/andersondev96/library-project?style=for-the-badge">
+<img src="https://img.shields.io/github/last-commit/andersondev96/library-project?color=blue&style=for-the-badge">
+<br><br>
 
-## About Laravel
+<h1> Sistema de gerenciamento para biblioteca 📚</h1>
+<b> Índice </b>
+<div>
+<ul>
+<li><a href="#-Sobre-o-Projeto">Sobre o projeto</a></li>
+<li><a href="#-Funcionalidades">Funcionalidades</a></li>
+<li><a href="#-Features">Features</a></li>
+<li><a href="#-Tecnologias">Tecnologias</a></li>
+<li><a href="#-Como-executar-a-aplicação">Como executar a aplicação</a></li>
+<li><a href="#-Como-Contribuir">Como contribuir</a></li>
+<li><a href="#-Autor">Autor</a></li>
+<li><a href="#-Licença">Licença</a></li>
+</ul>
+<div>
+<div>
+<h2>📄 Sobre o projeto</h2>
+<b>Status: Em construção 🚧 </b>
+<p> A aplicação desenvolvida consiste em um sistema de gerenciamento para bibliotecas, possibilitando o usuário realizar as principais atividades necessárias em uma biblioteca, como cadastrar livros e clientes e realizar os empréstimos.</p><br>
+</div>
+<div>
+<h2> 🔧 Funcionalidades</h2>
+<ul>
+<b>Usuários</b>
+<li>Cadastrar usuário</li>
+<li>Visualizar usuários</li>
+<li>Editar usuários
+<li> Remover usuários</li>
+<li>Gerenciar permissões dos usuários</li>
+</ul>
+<ul>
+<b>Clientes</b>
+<li>Cadastrar clientes</li>
+<li>Visualizar clientes</li>
+<li>Editar clientes
+<li> Remover clientes</li>
+</ul>
+<ul>
+<b>Livros</b>
+<li>Cadastrar livros</li>
+<li>Visualizar livros</li>
+<li>Editar livros
+<li> Remover livros</li>
+</ul>
+<ul>
+<b>Empréstimos</b>
+<li>Realizar empréstimo de livros para os clientes, respeitando as condições para empréstimo</li>
+<li>Listar os empréstimos, pesquisando pelo nome do cliente</li>
+<li>Editar um empréstimo, antes da devolução</li>
+<li>Renovar empréstimos</li>
+<li>Excluir empréstimo, antes da devolução</li>
+<li>Dar baixa nos livros devolvidos</li>
+<li>Calcular multas caso um livro não seja devolvido no prazo</li>
+<li>Quitar as dívidas do cliente com a biblioteca</li>
+</ul><br>
+</div>
+<div>
+<h2>🔨 Features</h2>
+<ul>
+<li>Melhorar o dashboard do sistema</li>
+<li>Melhorar a interface do sistema</li>
+<li>Melhorar pop-up de confirmação ao excluir</li>
+<li>Colocar modo dark na aplicação</li>
+<li>Permitir a ordenação das colunas na tabela</li>
+<li>Envio de e-mail ao realizar o empréstimo e realizar a sua devolução</li>
+<li>Permitir adicionar fotos dos livros e dos clientes</li>
+<li>Exibir fotos dos livros, clientes e usuários na tabela</li>
+<li>Permitir pagamento parcial da multa</li>
+<li>Validar os campos quando for editar informações</li>
+<li>Exibir nome dos livros e dos clientes no select de empréstimos, ao invés do ID.</li>
+<li>Utilizar o formato de data 'DD/MM/YYYY' no dayPicker.</li>
+<li>Calcular automaticamente a data de devolução do livro</li>
+<li>Criar uma área ou modal específico para renovação do livro</li>
+</ul>
+<br>
+</div>
+<div>
+<h2>🧑‍💻 Tecnologias utilizadas</h2>
+<a href="https://www.php.net/manual/en/">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" height="64" />
+</a>
+<a href="https://laravel.com/docs/8.x">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain-wordmark.svg" height="64" />
+</a>
+<a href="https://tailwindcss.com/docs/installation">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg" height="64"/>
+</a>
+<a href="https://dev.mysql.com/doc/">
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original-wordmark.svg" height="64"/>
+</a>
+<br></br>
+</div>
+<div>
+<h2>🚀Como executar a aplicação</h2>
+<b>Pré-requisitos</b>
+<p>Antes de começar, você deve ter instalado em sua máquina, as seguintes ferramentas: <a href="https://git-scm.com/">Git</a>, <a href="https://www.php.net/downloads.php">PHP</a> (de preferência a versão 7.4), <a href="https://getcomposer.org/download/">Composer</a>, <a href="https://www.mysql.com/downloads/">MySQL</a> e também um editor, para trabalhar com o código, como o <a href="https://code.visualstudio.com/">VSCode</a>.
+<br><br>
+<b>Download do projeto</b>
+<br>
+1. Clone este repositório executando: <br>
+<i>git clone https://github.com/andersondev96/library-project</i>
+<br>
+2. Acesse a pasta <i>/library-project</i>.
+<br>
+3.Abra o VSCode, rodando: <i>code .</i><br>
+4. Instale as dependências do projeto, com o comando: <i>composer install</i><br><br>
+<b>Configuração do banco de dados</b><br>
+1. No arquivo <i>.env</i>, configure as credenciais do banco de dados, utilize o <i>.env.example</i>, caso seja necessário.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=library
+DB_USERNAME=<username>
+DB_PASSWORD=<password>
+```
+2. Agora você deve rodar este <a href="script.sql">script mysql</a>, par o seu banco de dados aparecer, povoado.
+3. Após rodar o script, execute a aplicação com o comando **php artisan serve**.
+4. Rode a aplicação na porta **http://localhost:8000**.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<br>
+<h2> 🤝 Como contribuir</h2>
+<ol>
+    <li>Faça um fork do repositório.</li>
+    <li>Crie uma nova branch com as suas alterações: <code>git checkout -b my-feature</code>.</li>
+    <li>Salve as suas alterações e crie uma mensagem de commit, dizendo o que você fez: <code>git commit -m "feature: My new feature"</code>.</li>
+    <li>Envie as suas alterações:<code>git push origin my-feature</code>.</li>
+</ol>
+<br>
+<h2> 👥 Autor </h2>
+<a href="https://www.linkedin.com/in/anderson-fernandes96/">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px">
+    <img src="https://avatars.githubusercontent.com/u/49786548?v=4" width="64" style="border: 2px solid blue; border-radius: 50px" />
+    <strong>Anderson Fernandes Ferreira</strong>
+    </div><br>
+    <div style="display:flex; flex-direction:row;gap:8px;">
+        <a href="https://instagram.com/anderson_ff13" target="_blank"><img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" target="_blank"></a>
+  <a href = "mailto:andersonfferreira96@gmail.com.br"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+  <a href="https://twitter.com/anderson_4nd" target="_blank"><img src="https://img.shields.io/badge/-Twitter-%231DA1F2?style=for-the-badge&logo=twitter&logoColor=white" target="_blank"></a> 
+    <a href="https://www.linkedin.com/in/anderson-fernandes96/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
+    </div>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+</a>
+<br>
+<h2>📝Licença</h2>
+<p>Este projeto está sobre a licença MIT.
 
-## Learning Laravel
+Feito com 💚 por Anderson Fernandes 👋 
+<a href="https://www.linkedin.com/in/anderson-fernandes96/">Entre em contato!</a>
+<br>
+<h2>Versões do README</h2>
+🇧🇷 Português | 🇺🇸 English
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
