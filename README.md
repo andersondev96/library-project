@@ -1,4 +1,5 @@
 <div 
+align="center"
 style="display: flex; 
 flex-direction: row;
 gap: 10px">
@@ -83,7 +84,7 @@ gap: 10px">
 <li>Permitir pagamento parcial da multa</li>
 <li>Validar os campos quando for editar informações</li>
 <li>Exibir nome dos livros e dos clientes no select de empréstimos, ao invés do ID.</li>
-<li>Utilizar o formato de data 'DD/MM/YYYY' no dayPicker.</li>
+    <li>Utilizar o formato de data <code>'DD/MM/YYYY'</code> no dayPicker.</li>
 <li>Calcular automaticamente a data de devolução do livro</li>
 <li>Criar uma área ou modal específico para renovação do livro</li>
 </ul>
@@ -113,14 +114,14 @@ gap: 10px">
 <b>Download do projeto</b>
 <br>
 1. Clone este repositório executando: <br>
-<i>git clone https://github.com/andersondev96/library-project</i>
+<code>git clone https://github.com/andersondev96/library-project</code>
 <br>
-2. Acesse a pasta <i>/library-project</i>.
+2. Acesse a pasta <code>/library-project</code>.
 <br>
-3.Abra o VSCode, rodando: <i>code .</i><br>
-4. Instale as dependências do projeto, com o comando: <i>composer install</i><br><br>
+3.Abra o VSCode, rodando: <code>code .</code><br>
+4. Instale as dependências do projeto, com o comando: <code>composer install</code><br><br>
 <b>Configuração do banco de dados</b><br>
-1. No arquivo <i>.env</i>, configure as credenciais do banco de dados, utilize o <i>.env.example</i>, caso seja necessário.
+1. No arquivo <code>.env</code>, configure as credenciais do banco de dados, utilize o <code>.env.example</code>, caso seja necessário.
 
 ```
 DB_CONNECTION=mysql
