@@ -2,8 +2,8 @@
 style="display: flex; 
 flex-direction: row;
 gap: 10px">
-<img src="banner-1.png" width="500px">
-<img src="banner-2.png" width="500px">
+<img src="banner-1.png" width="400px">
+<img src="banner-2.png" width="400px">
 </div>
 
 <br>
