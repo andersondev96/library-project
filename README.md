@@ -1,4 +1,5 @@
 <div 
+align="center"
 style="display: flex; 
 flex-direction: row;
 gap: 10px">
