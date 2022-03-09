@@ -88,10 +88,10 @@
                         {{ \Carbon\Carbon::parse($l->loan_date)->format('d/m/Y') }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                        {{ $l->title }}
+                        {{ strlen($l->title) > 25 ? substr($l->title, 0, 25) . "..." : $l->title }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                        {{ $l->name}}
+                        {{ strlen($l->name) > 25 ? substr($l->name, 0, 25) . "..." : $l->name }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
                         {{ \Carbon\Carbon::parse($l->delivery_date)->format('d/m/Y') }}

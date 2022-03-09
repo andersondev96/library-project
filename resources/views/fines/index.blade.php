@@ -80,7 +80,7 @@
                         {{ $f->cpf }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                        {{ $f->name }}
+                        {{ strlen($f->name) > 25 ? substr($f->name, 0, 25) . "..." : $f->name }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
                         {{ $f->email }}

@@ -84,7 +84,7 @@
                         {{ $b->isbn }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
-                        {{ strlen($b->title) > 60 ? substr($b->title, 0, 60) . "..." : $b->title }}
+                        {{ strlen($b->title) > 40 ? substr($b->title, 0, 40) . "..." : $b->title }}
                       </td>
                       <td class="px-6 py-3 text-sm p-3 border-t border-grey-light whitespace-no-wrap">
                         {{ strlen($b->author) > 20 ? substr($b->author, 0, 20) . "..." : $b->author }}
