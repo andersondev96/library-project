@@ -38,36 +38,36 @@ gap: 10px">
 <h2>🔧 Funcionalidades</h2>
 <ul>
 <b>Usuários</b>
-<li>Cadastrar usuário</li>
-<li>Visualizar usuários</li>
-<li>Editar usuários
-<li> Remover usuários</li>
-<li>Gerenciar permissões dos usuários</li>
+<li>✅ Cadastrar usuário</li>
+<li>✅ Visualizar usuários</li>
+<li>✅ Editar usuários
+<li>✅ Remover usuários</li>
+<li>✅ Gerenciar permissões dos usuários</li>
 </ul>
 <ul>
 <b>Clientes</b>
-<li>Cadastrar clientes</li>
-<li>Visualizar clientes</li>
-<li>Editar clientes
-<li> Remover clientes</li>
+<li>✅ Cadastrar clientes</li>
+<li>✅ Visualizar clientes</li>
+<li>✅ Editar clientes
+<li>✅ Remover clientes</li>
 </ul>
 <ul>
 <b>Livros</b>
-<li>Cadastrar livros</li>
-<li>Visualizar livros</li>
-<li>Editar livros
-<li> Remover livros</li>
+<li>✅ Cadastrar livros</li>
+<li>✅ Visualizar livros</li>
+<li>✅ Editar livros
+<li>✅ Remover livros</li>
 </ul>
 <ul>
 <b>Empréstimos</b>
-<li>Realizar empréstimo de livros para os clientes, respeitando as condições para empréstimo</li>
-<li>Listar os empréstimos, pesquisando pelo nome do cliente</li>
-<li>Editar um empréstimo, antes da devolução</li>
-<li>Renovar empréstimos</li>
-<li>Excluir empréstimo, antes da devolução</li>
-<li>Dar baixa nos livros devolvidos</li>
-<li>Calcular multas caso um livro não seja devolvido no prazo</li>
-<li>Quitar as dívidas do cliente com a biblioteca</li>
+<li>✅ Realizar empréstimo de livros para os clientes, respeitando as condições para empréstimo</li>
+<li>✅ Listar os empréstimos, pesquisando pelo nome do cliente</li>
+<li>✅ Editar um empréstimo, antes da devolução</li>
+<li>✅ Renovar empréstimos</li>
+<li>✅ Excluir empréstimo, antes da devolução</li>
+<li>✅ Dar baixa nos livros devolvidos</li>
+<li>✅ Calcular multas caso um livro não seja devolvido no prazo</li>
+<li>✅ Quitar as dívidas do cliente com a biblioteca</li>
 </ul><br>
 </div>
 <div>
