@@ -40,7 +40,7 @@ gap: 10px">
 <b>Usuários</b>
 <li>✅ Cadastrar usuário</li>
 <li>✅ Visualizar usuários</li>
-<li>✅ Editar usuários
+<li>✅ Editar usuários</li>
 <li>✅ Remover usuários</li>
 <li>✅ Gerenciar permissões dos usuários</li>
 </ul>
@@ -48,14 +48,14 @@ gap: 10px">
 <b>Clientes</b>
 <li>✅ Cadastrar clientes</li>
 <li>✅ Visualizar clientes</li>
-<li>✅ Editar clientes
+<li>✅ Editar clientes</li>
 <li>✅ Remover clientes</li>
 </ul>
 <ul>
 <b>Livros</b>
 <li>✅ Cadastrar livros</li>
 <li>✅ Visualizar livros</li>
-<li>✅ Editar livros
+<li>✅ Editar livros</li>
 <li>✅ Remover livros</li>
 </ul>
 <ul>
@@ -84,7 +84,7 @@ gap: 10px">
 <li>Permitir pagamento parcial da multa</li>
 <li>Validar os campos quando for editar informações</li>
 <li>Exibir nome dos livros e dos clientes no select de empréstimos, ao invés do ID.</li>
-    <li>Utilizar o formato de data <code>'DD/MM/YYYY'</code> no dayPicker.</li>
+<li>Utilizar o formato de data <code>'DD/MM/YYYY'</code> no dayPicker.</li>
 <li>Calcular automaticamente a data de devolução do livro</li>
 <li>Criar uma área ou modal específico para renovação do livro</li>
 </ul>
@@ -166,7 +166,9 @@ Feito com 💚 por Anderson Fernandes 👋
 <a href="https://www.linkedin.com/in/anderson-fernandes96/">Entre em contato!</a>
 <br>
 <h2>Versões do README</h2>
-🇧🇷 Português | 🇺🇸 English
+🇧🇷 <a href="README.md">Português</a> | 
+🇺🇸 <a href="README-en.md">English</a>
+
 
 
 
