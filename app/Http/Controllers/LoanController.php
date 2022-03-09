@@ -212,7 +212,14 @@ class LoanController extends Controller
      */
     public function destroy(Loan $loan)
     {
+        $book = Book::find($loan->books_id);
+        $client = Client::find($loan->client_id);
+
+        $book->decrement('borrowed_amounts');
+        $client->decrement('books');
+
         $loan->delete();
+
         session()->flash('message', 'Empréstimo excluído com sucesso');
         return redirect()->route('loans.index');
     }
