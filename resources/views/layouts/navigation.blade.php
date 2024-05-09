@@ -17,7 +17,7 @@
           </x-nav-link>
         </div>
 
-        @if( App\Providers\AppServiceProvider::boot() != 0 )
+
 
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('books.index')"
@@ -47,7 +47,7 @@
           </x-nav-link>
         </div>
 
-        @if(App\Providers\AppServiceProvider::boot() == 1)
+
 
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
           <x-nav-link :href="route('users.index')"
@@ -63,10 +63,7 @@
           </x-nav-link>
         </div>
 
-        @endif
 
-
-        @endif
       </div>
 
       <!-- Settings Dropdown -->
