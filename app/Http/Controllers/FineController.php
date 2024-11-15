@@ -34,7 +34,7 @@ class FineController extends Controller
     public function payment(Client $client) {
         $client->traffic_ticket = 0;
         $client->save();
-        return redirect()->route('fines.index');
+        return redirect()->route('fines');
         session()->flash('message', 'Multa paga com sucesso');
     }
 }

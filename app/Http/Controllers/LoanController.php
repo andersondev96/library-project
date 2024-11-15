@@ -84,7 +84,7 @@ class LoanController extends Controller
             $book->save();
 
             session()->flash('message', 'Empréstimo realizado com sucesso!');
-            return redirect()->route('loans.index');
+            return redirect()->route('loans');
         }
             session()->flash('error', 'Não foi possível realizar o empréstimo, tente novamente!');
             return redirect()->route('loans.create');
@@ -149,7 +149,7 @@ class LoanController extends Controller
         }
 
         session()->flash('message', 'Devolução realizada com sucesso');
-        return redirect()->route('loans.index');
+        return redirect()->route('loans');
     }
 
     /**
@@ -196,11 +196,11 @@ class LoanController extends Controller
                 $loan->fill($request->all());
                 $loan->save();
                 session()->flash('message', 'Empréstimo atualizado com sucesso');
-                return redirect()->route('loans.index');
+                return redirect()->route('loans');
 
         } else {
                 session()->flash('error', 'Erro ao atualizar o empréstimo');
-                return redirect()->route('loans.index');
+                return redirect()->route('loans');
         }
     }
 
@@ -221,6 +221,6 @@ class LoanController extends Controller
         $loan->delete();
 
         session()->flash('message', 'Empréstimo excluído com sucesso');
-        return redirect()->route('loans.index');
+        return redirect()->route('loans');
     }
 }

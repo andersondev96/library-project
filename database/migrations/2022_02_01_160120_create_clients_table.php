@@ -21,7 +21,7 @@ class CreateClientsTable extends Migration
             $table->date('birth_date');
             $table->unsignedBigInteger('address_id');
             $table->string('email', 100)->unique();
-            $table->string('telephone', 14)->unique();
+            $table->string('phone')->unique();
             $table->string('type', 20);
             $table->string('department', 100);
             $table->integer('books')->default(0);

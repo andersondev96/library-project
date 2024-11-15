@@ -59,7 +59,7 @@ class ClientController extends Controller
             $client->address_id = $address->id;
             $client->save();
             session()->flash('message', 'Cliente adicionado com sucesso');
-            return redirect()->route('clients.index');
+            return redirect()->route('clients');
         } catch (Exception $e) {
             session()->flash('error', 'Erro ao realizar o cadastro.');
         }
@@ -106,7 +106,7 @@ class ClientController extends Controller
         $client->save();
 
         session()->flash('message', 'Cliente atualizado com sucesso');
-        return redirect()->route('clients.index');
+        return redirect()->route('clients');
     }
 
     /**
@@ -128,7 +128,7 @@ class ClientController extends Controller
             session()->flash('message', 'Cliente excluído com sucesso');
         }
 
-        return redirect()->route('clients.index');
+        return redirect()->route('clients');
 
     }
 }

@@ -21,7 +21,7 @@ class ClientFactory extends Factory
             'birth_date' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
             'address_id' => Address::factory(),
             'email' => $this->faker->email,
-            'telephone' => $this->faker->tollFreePhoneNumber,
+            'phone' => $this->faker->phoneNumber(),
             'type' => $this->faker->word,
             'department' => $this->faker->jobTitle,
             'books' => $this->faker->randomDigit,

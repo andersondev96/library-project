@@ -20,29 +20,29 @@
 
 
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('books.index')"
-            :active="request()->routeIs('books.index') || (\Request::is('books/*'))">
+          <x-nav-link :href="route('books')"
+            :active="request()->routeIs('books.*') || (\Request::is('books/*'))">
             {{ __('Livros') }}
           </x-nav-link>
         </div>
 
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('clients.index')"
-            :active="request()->routeIs('clients.index') || (\Request::is('clients/*'))">
+          <x-nav-link :href="route('clients')"
+            :active="request()->routeIs('clients') || (\Request::is('clients/*'))">
             {{ __('Clientes') }}
           </x-nav-link>
         </div>
 
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('loans.index')"
-            :active="request()->routeIs('loans.index') || (\Request::is('loans/*'))">
+          <x-nav-link :href="route('loans')"
+            :active="request()->routeIs('loans') || (\Request::is('loans/*'))">
             {{ __('Empréstimos') }}
           </x-nav-link>
         </div>
 
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-          <x-nav-link :href="route('fines.index')"
-            :active="request()->routeIs('fines.index') || (\Request::is('fines/*'))">
+          <x-nav-link :href="route('fines')"
+            :active="request()->routeIs('fines') || (\Request::is('fines/*'))">
             {{ __('Multas') }}
           </x-nav-link>
         </div>

@@ -34,6 +34,30 @@ new class extends Component
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('books')" :active="request()->routeIs('books')" wire:navigate>
+                        {{ __('Livros') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('clients')" :active="request()->routeIs('clients')" wire:navigate>
+                        {{ __('Clientes') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('loans')" :active="request()->routeIs('loans')" wire:navigate>
+                        {{ __('Empréstimos') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('fines')" :active="request()->routeIs('fines')" wire:navigate>
+                        {{ __('Multas') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -53,13 +77,13 @@ new class extends Component
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile')" wire:navigate>
-                            {{ __('Profile') }}
+                            {{ __('Perfil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
                         <button wire:click="logout" class="w-full text-start">
                             <x-dropdown-link>
-                                {{ __('Log Out') }}
+                                {{ __('Sair') }}
                             </x-dropdown-link>
                         </button>
                     </x-slot>
@@ -83,6 +107,30 @@ new class extends Component
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" wire:navigate>
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('books')" :active="request()->routeIs('books.*')" wire:navigate>
+                {{ __('Books') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('clients')" :active="request()->routeIs('clients.*')" wire:navigate>
+                {{ __('Clients') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('loans')" :active="request()->routeIs('loans.*')" wire:navigate>
+                {{ __('Loans') }}
+            </x-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('fines')" :active="request()->routeIs('fines.*')" wire:navigate>
+                {{ __('Fines') }}
             </x-responsive-nav-link>
         </div>
 

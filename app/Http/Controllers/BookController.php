@@ -48,7 +48,7 @@ class BookController extends Controller
     {
         Book::create($request->all());
         session()->flash('message', 'Livro adicionado com sucesso');
-        return redirect()->route('books.index');
+        return redirect()->route('books');
 }
 
     /**
@@ -89,7 +89,7 @@ class BookController extends Controller
         } else {
             session()->flash('error', 'Quantidade de exemplares inválida. Insira uma valor maior do que ' .($book->borrowed_amounts + 1) );
         }
-        return redirect()->route('books.index');
+        return redirect()->route('books');
     }
 
     /**
@@ -108,7 +108,7 @@ class BookController extends Controller
             session()->flash('message', 'Livro excluido com sucesso');
         }
 
-        return redirect()->route('books.index');
+        return redirect()->route('books');
 
 
     }

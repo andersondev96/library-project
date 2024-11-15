@@ -11,7 +11,7 @@
         <div class="p-6 bg-white border-b border-gray-200">
 
           <div class="flex flex-row w-full items-center justify-between">
-            <form action="{{ route('fines.index')}}" method="GET">
+            <form action="{{ route('fines')}}" method="GET">
               <div class="flex flex-row items-center mb-4">
                 <input
                   class="appearence-none block w-full bg-gray-200 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight"
@@ -28,7 +28,7 @@
             </form>
           </div>
         </div>
-        <a href="{{route('fines.index')}}">
+        <a href="{{route('fines')}}">
           <div class="ml-1 text-xs mb-2 text-blue-400 text-opacity-75">
             EXIBIR TODOS OS RESULTADOS
           </div>
